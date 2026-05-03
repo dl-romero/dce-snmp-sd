@@ -302,6 +302,69 @@ Devices without a resolved module are excluded from `/targets` until discovery c
 
 ---
 
+## Docker
+
+### Quick start
+
+```bash
+# 1. Create a data directory and populate it
+mkdir -p data
+cp /path/to/ddf-to-snmp-exporter/output/module_lookup.json data/
+cp /path/to/ddf-to-snmp-exporter/output/snmp.yml data/
+
+# 2. Configure (optional — all have defaults)
+cp .env.example .env
+# Edit .env if you want a different port, refresh interval, etc.
+
+# 3. Start both snmp-http-sd and snmp_exporter
+docker compose up -d
+```
+
+`devices.json` is written automatically into the same `data/` directory and survives container restarts.
+
+### Configurable parameters
+
+Set these in `.env` (see `.env.example`):
+
+| Variable | Default | Description |
+|---|---|---|
+| `DATA_DIR` | `./data` | Host directory mounted as `/data` — put `module_lookup.json` and `snmp.yml` here |
+| `SNMP_CONFIG_DIR` | `./data` | Host directory mounted into snmp_exporter — defaults to same as `DATA_DIR` |
+| `PORT` | `8000` | Host port for snmp-http-sd |
+| `REFRESH_INTERVAL_HOURS` | `6` | How often to re-probe all devices for hostname changes |
+| `SNMP_TIMEOUT` | `3` | SNMP timeout per device in seconds |
+| `SNMP_RETRIES` | `1` | SNMP retries per device |
+
+### Reloading the module lookup without restarting
+
+When the daily DDF sync regenerates `module_lookup.json`, tell the running container to reload it:
+
+```bash
+curl -X POST http://localhost:8000/api/reload-lookup
+```
+
+If you're running `ddf-to-snmp-exporter`'s sync service on the same host with the data directory bind-mounted, you can add this call to your sync script to make the reload automatic.
+
+### Build the image locally
+
+```bash
+docker build -t snmp-http-sd:latest .
+```
+
+### Run without docker-compose
+
+```bash
+docker run -d \
+  --name snmp-http-sd \
+  -p 8000:8000 \
+  -v /path/to/data:/data \
+  -e REFRESH_INTERVAL_HOURS=6 \
+  -e SNMP_TIMEOUT=3 \
+  snmp-http-sd:latest
+```
+
+---
+
 ## Troubleshooting
 
 ### Device stays `ready: false` after adding
@@ -336,12 +399,14 @@ sudo systemctl restart snmp-http-sd
 
 ### Regenerating the module lookup after new DDFs
 
-Run this on the `ddf-to-snmp-exporter` host, then restart or SIGHUP this service to reload:
+Run this on the `ddf-to-snmp-exporter` host, then reload without restarting:
 ```bash
 python3 /opt/ddf-to-snmp-exporter/scripts/build_lookup.py \
   /opt/Schneider-Electric_SNMP-DDF-Downloader/ddf_files \
   -o /opt/ddf-to-snmp-exporter/output/module_lookup.json
-sudo systemctl restart snmp-http-sd
+
+# Reload without restart (systemd or Docker)
+curl -X POST http://localhost:8000/api/reload-lookup
 ```
 
 If you're using the daily sync service from `ddf-to-snmp-exporter`, the lookup is regenerated automatically every night.

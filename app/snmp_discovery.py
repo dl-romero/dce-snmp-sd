@@ -46,6 +46,11 @@ def _reload_lookup() -> None:
         _lookup = None
 
 
+def reload_lookup() -> None:
+    """Reload the lookup file from disk (call after the daily DDF sync updates it)."""
+    _reload_lookup()
+
+
 # ── SNMP GET ──────────────────────────────────────────────────────────────────
 
 async def _snmp_get(

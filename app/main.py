@@ -24,7 +24,7 @@ from fastapi.responses import JSONResponse
 
 from .models import DeviceIn, DeviceOut, DeviceRecord, DeviceUpdate
 from .store import DeviceStore
-from .snmp_discovery import configure_lookup, probe_device, resolve_hostname
+from .snmp_discovery import configure_lookup, probe_device, resolve_hostname, reload_lookup
 from .scheduler import start_refresh_scheduler, refresh_all
 
 logging.basicConfig(
@@ -285,3 +285,15 @@ async def refresh_all_devices(background_tasks: BackgroundTasks):
         "status": "accepted",
         "message": f"Refresh queued for {len(devices)} devices",
     }
+
+
+@app.post("/api/reload-lookup", tags=["service"])
+async def reload_lookup_endpoint():
+    """
+    Reload module_lookup.json from disk without restarting the service.
+
+    Call this after the daily DDF sync regenerates the lookup index so that
+    newly added modules are available immediately.
+    """
+    reload_lookup()
+    return {"status": "ok", "message": f"Module lookup reloaded from {MODULE_LOOKUP_PATH}"}
