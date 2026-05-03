@@ -61,15 +61,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `ready` flag on each device record — `true` once an effective module is set
 
 #### Deployment
-- `install.sh` — one-command Linux installer: creates `snmp-http-sd` system user, installs app to `/opt/snmp-http-sd`, creates Python venv, patches and enables systemd unit
-- `systemd/snmp-http-sd.service` — simple systemd unit with `Restart=on-failure`, journal logging, and all env vars configurable via `systemctl edit`
+- `install.sh` — one-command Linux installer: creates `dce-snmp-sd` system user, installs app to `/opt/dce-snmp-sd`, creates Python venv, patches and enables systemd unit
+- `systemd/dce-snmp-sd.service` — simple systemd unit with `Restart=on-failure`, journal logging, and all env vars configurable via `systemctl edit`
 - `Dockerfile` — layered build (dependencies as a separate layer), `/data` volume mount point, `HEALTHCHECK` via urllib, all five env vars set as `ENV` defaults
-- `docker-compose.yml` — full stack with `snmp-http-sd` and `prom/snmp-exporter`, all parameters driven by `.env`
+- `docker-compose.yml` — full stack with `dce-snmp-sd` and `prom/snmp-exporter`, all parameters driven by `.env`
 - `.env.example` — documents all configurable Docker parameters with defaults
 
 #### Documentation
 - Full `README.md`: how it works, installation (Linux systemd and Docker), configuration, complete REST API reference with request/response examples, Prometheus relabel config, Docker quick-start, troubleshooting guide
 
-[Unreleased]: https://github.com/dl-romero/snmp-http-sd/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/dl-romero/snmp-http-sd/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/dl-romero/snmp-http-sd/releases/tag/v1.0.0
+[Unreleased]: https://github.com/dl-romero/dce-snmp-sd/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/dl-romero/dce-snmp-sd/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/dl-romero/dce-snmp-sd/releases/tag/v1.0.0

@@ -1,34 +1,34 @@
 [Unit]
-Description=SNMP HTTP Service Discovery for Prometheus
-Documentation=https://github.com/dl-romero/snmp-http-sd
+Description=DCE SNMP HTTP Service Discovery for Prometheus
+Documentation=https://github.com/dl-romero/dce-snmp-sd
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-User=snmp-http-sd
-Group=snmp-http-sd
-WorkingDirectory=/opt/snmp-http-sd
+User=dce-snmp-sd
+Group=dce-snmp-sd
+WorkingDirectory=/opt/dce-snmp-sd
 
 # ── Required ──────────────────────────────────────────────────────────────────
-Environment=MODULE_LOOKUP_PATH=/opt/ddf-to-snmp-exporter/output/module_lookup.json
-Environment=DATA_FILE=/var/lib/snmp-http-sd/devices.json
+Environment=MODULE_LOOKUP_PATH=/opt/dce-snmp-modules/output/module_lookup.json
+Environment=DATA_FILE=/var/lib/dce-snmp-sd/devices.json
 
 # ── Optional (shown with defaults) ───────────────────────────────────────────
-# Environment=DCE_SERVERS_FILE=/var/lib/snmp-http-sd/dce_servers.json
+# Environment=DCE_SERVERS_FILE=/var/lib/dce-snmp-sd/dce_servers.json
 # Environment=REFRESH_INTERVAL_HOURS=6
 # Environment=DCE_SYNC_INTERVAL_HOURS=1
 # Environment=SNMP_TIMEOUT=3
 # Environment=SNMP_RETRIES=1
 
-ExecStart=/opt/snmp-http-sd/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+ExecStart=/opt/dce-snmp-sd/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 Restart=on-failure
 RestartSec=5
 
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=snmp-http-sd
+SyslogIdentifier=dce-snmp-sd
 
 [Install]
 WantedBy=multi-user.target

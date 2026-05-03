@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# install.sh — installs snmp-http-sd as a systemd service
+# install.sh — installs dce-snmp-sd as a systemd service
 #
 # Usage: sudo bash install.sh [options]
 #
 # Options:
-#   --lookup PATH    Path to module_lookup.json (default: /opt/ddf-to-snmp-exporter/output/module_lookup.json)
+#   --lookup PATH    Path to module_lookup.json (default: /opt/dce-snmp-modules/output/module_lookup.json)
 #   --port PORT      Port to listen on (default: 8000)
 #   --host HOST      Bind address (default: 0.0.0.0)
 #   --help
 
 set -euo pipefail
 
-INSTALL_DIR="/opt/snmp-http-sd"
-DATA_DIR="/var/lib/snmp-http-sd"
-SERVICE_USER="snmp-http-sd"
+INSTALL_DIR="/opt/dce-snmp-sd"
+DATA_DIR="/var/lib/dce-snmp-sd"
+SERVICE_USER="dce-snmp-sd"
 SYSTEMD_DIR="/etc/systemd/system"
-LOOKUP_PATH="/opt/ddf-to-snmp-exporter/output/module_lookup.json"
+LOOKUP_PATH="/opt/dce-snmp-modules/output/module_lookup.json"
 PORT=8000
 HOST="0.0.0.0"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -36,7 +36,7 @@ log() { echo "  [install] $*"; }
 ok()  { echo "  ✓ $*"; }
 
 echo ""
-echo "=== snmp-http-sd installer ==="
+echo "=== dce-snmp-sd installer ==="
 echo ""
 
 # ── Service user ──────────────────────────────────────────────────────────────
@@ -67,17 +67,17 @@ ok "Virtual environment ready"
 
 # ── Systemd unit ──────────────────────────────────────────────────────────────
 log "Installing systemd unit..."
-cp "${REPO_DIR}/systemd/snmp-http-sd.service" "${SYSTEMD_DIR}/"
+cp "${REPO_DIR}/systemd/dce-snmp-sd.service" "${SYSTEMD_DIR}/"
 
 # Patch in configured values
-sed -i "s|MODULE_LOOKUP_PATH=.*|MODULE_LOOKUP_PATH=${LOOKUP_PATH}|" "${SYSTEMD_DIR}/snmp-http-sd.service"
-sed -i "s|DATA_FILE=.*|DATA_FILE=${DATA_DIR}/devices.json|" "${SYSTEMD_DIR}/snmp-http-sd.service"
-sed -i "s|--host 0.0.0.0 --port 8000|--host ${HOST} --port ${PORT}|" "${SYSTEMD_DIR}/snmp-http-sd.service"
-sed -i "s|^User=.*|User=${SERVICE_USER}|" "${SYSTEMD_DIR}/snmp-http-sd.service"
-sed -i "s|^Group=.*|Group=${SERVICE_USER}|" "${SYSTEMD_DIR}/snmp-http-sd.service"
+sed -i "s|MODULE_LOOKUP_PATH=.*|MODULE_LOOKUP_PATH=${LOOKUP_PATH}|" "${SYSTEMD_DIR}/dce-snmp-sd.service"
+sed -i "s|DATA_FILE=.*|DATA_FILE=${DATA_DIR}/devices.json|" "${SYSTEMD_DIR}/dce-snmp-sd.service"
+sed -i "s|--host 0.0.0.0 --port 8000|--host ${HOST} --port ${PORT}|" "${SYSTEMD_DIR}/dce-snmp-sd.service"
+sed -i "s|^User=.*|User=${SERVICE_USER}|" "${SYSTEMD_DIR}/dce-snmp-sd.service"
+sed -i "s|^Group=.*|Group=${SERVICE_USER}|" "${SYSTEMD_DIR}/dce-snmp-sd.service"
 
 systemctl daemon-reload
-systemctl enable --now snmp-http-sd.service
+systemctl enable --now dce-snmp-sd.service
 ok "Service enabled and started"
 
 echo ""
@@ -90,6 +90,6 @@ echo "  API:      http://${HOST}:${PORT}"
 echo "  Targets:  http://${HOST}:${PORT}/targets"
 echo ""
 echo "  Commands:"
-echo "    sudo systemctl status snmp-http-sd"
-echo "    sudo journalctl -u snmp-http-sd -f"
+echo "    sudo systemctl status dce-snmp-sd"
+echo "    sudo journalctl -u dce-snmp-sd -f"
 echo ""
