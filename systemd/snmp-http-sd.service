@@ -1,0 +1,32 @@
+[Unit]
+Description=SNMP HTTP Service Discovery for Prometheus
+Documentation=https://github.com/dl-romero/snmp-http-sd
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=snmp-http-sd
+Group=snmp-http-sd
+WorkingDirectory=/opt/snmp-http-sd
+
+# ── Required ──────────────────────────────────────────────────────────────────
+Environment=MODULE_LOOKUP_PATH=/opt/ddf-to-snmp-exporter/output/module_lookup.json
+Environment=DATA_FILE=/var/lib/snmp-http-sd/devices.json
+
+# ── Optional (shown with defaults) ───────────────────────────────────────────
+# Environment=REFRESH_INTERVAL_HOURS=6
+# Environment=SNMP_TIMEOUT=3
+# Environment=SNMP_RETRIES=1
+
+ExecStart=/opt/snmp-http-sd/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Restart=on-failure
+RestartSec=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=snmp-http-sd
+
+[Install]
+WantedBy=multi-user.target
