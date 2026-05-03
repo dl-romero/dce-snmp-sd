@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2" xmlns:ns2="http://www.apc.com/stdws/xsd/ISXCentral/2009/10" xmlns:ns1="http://www.apc.com/stdws/xsd/ISXCentralAlarms-v2" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentralAlarms-v2">
+<xsd:complexType name="GetAlarmsDeltaHistoryForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="excludeSensorAlarms" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="secondsInPast" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForDeviceRequest" type="ns1:GetAlarmsDeltaHistoryForDeviceRequest"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForDeviceResponse" type="ns1:GetAlarmsDeltaHistoryForDeviceResponse"/>
+<xsd:complexType name="AlarmFaultDetail">
+<xsd:sequence>
+<xsd:element name="FaultMsg" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="AlarmServiceFault" type="ns1:AlarmFaultDetail"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryForSeverityRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="secondsInPast" type="xsd:int"/>
+<xsd:element name="ISXCAlarmSeverity" type="ns2:ISXCAlarmSeverity"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForSeverityRequest" type="ns1:GetAlarmsDeltaHistoryForSeverityRequest"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryForSeverityResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForSeverityResponse" type="ns1:GetAlarmsDeltaHistoryForSeverityResponse"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryForSensorRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="secondsInPast" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForSensorRequest" type="ns1:GetAlarmsDeltaHistoryForSensorRequest"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryForSensorResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryForSensorResponse" type="ns1:GetAlarmsDeltaHistoryForSensorResponse"/>
+<xsd:complexType name="GetActiveAlarmsForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="excludeSensorAlarms" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForDeviceRequest" type="ns1:GetActiveAlarmsForDeviceRequest"/>
+<xsd:complexType name="GetActiveAlarmsForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForDeviceResponse" type="ns1:GetActiveAlarmsForDeviceResponse"/>
+<xsd:complexType name="GetActiveAlarmsForSeverityRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCAlarmSeverity" type="ns2:ISXCAlarmSeverity"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForSeverityRequest" type="ns1:GetActiveAlarmsForSeverityRequest"/>
+<xsd:complexType name="GetActiveAlarmsForSeverityResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForSeverityResponse" type="ns1:GetActiveAlarmsForSeverityResponse"/>
+<xsd:complexType name="GetAlarmsHistoryForSeverityRequest">
+<xsd:sequence>
+<xsd:element name="EndDateTime" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCAlarmSeverity" type="ns2:ISXCAlarmSeverity"/>
+<xsd:element name="StartDateTime" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForSeverityRequest" type="ns1:GetAlarmsHistoryForSeverityRequest"/>
+<xsd:complexType name="GetAlarmsHistoryForSeverityResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForSeverityResponse" type="ns1:GetAlarmsHistoryForSeverityResponse"/>
+<xsd:complexType name="GetAlarmsHistoryForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element name="EndDateTime" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="excludeSensorAlarms" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="StartDateTime" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForDeviceRequest" type="ns1:GetAlarmsHistoryForDeviceRequest"/>
+<xsd:complexType name="GetAlarmsHistoryForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForDeviceResponse" type="ns1:GetAlarmsHistoryForDeviceResponse"/>
+<xsd:complexType name="GetAlarmByIDRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmByIDRequest" type="ns1:GetAlarmByIDRequest"/>
+<xsd:complexType name="GetAlarmByIDResponse">
+<xsd:sequence>
+<xsd:element name="ISXCAlarm" nillable="true" type="ns2:ISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmByIDResponse" type="ns1:GetAlarmByIDResponse"/>
+<xsd:complexType name="GetAlarmsHistoryForSensorRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element name="EndDateTime" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="StartDateTime" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForSensorRequest" type="ns1:GetAlarmsHistoryForSensorRequest"/>
+<xsd:complexType name="GetAlarmsHistoryForSensorResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryForSensorResponse" type="ns1:GetAlarmsHistoryForSensorResponse"/>
+<xsd:complexType name="GetActiveAlarmsForSensorRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForSensorRequest" type="ns1:GetActiveAlarmsForSensorRequest"/>
+<xsd:complexType name="GetActiveAlarmsForSensorResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getActiveAlarmsForSensorResponse" type="ns1:GetActiveAlarmsForSensorResponse"/>
+<xsd:complexType name="GetAllActiveAlarmsRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAllActiveAlarmsRequest" type="ns1:GetAllActiveAlarmsRequest"/>
+<xsd:complexType name="GetAllActiveAlarmsResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAllActiveAlarmsResponse" type="ns1:GetAllActiveAlarmsResponse"/>
+<xsd:complexType name="GetAlarmsHistoryRequest">
+<xsd:sequence>
+<xsd:element name="EndDateTime" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="StartDateTime" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryRequest" type="ns1:GetAlarmsHistoryRequest"/>
+<xsd:complexType name="GetAlarmsHistoryResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsHistoryResponse" type="ns1:GetAlarmsHistoryResponse"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="secondsInPast" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryRequest" type="ns1:GetAlarmsDeltaHistoryRequest"/>
+<xsd:complexType name="GetAlarmsDeltaHistoryResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCAlarm" type="ns2:ArrayOfISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAlarmsDeltaHistoryResponse" type="ns1:GetAlarmsDeltaHistoryResponse"/>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentral/2009/10">
+<xsd:complexType name="ArrayOfISXCAlarm">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCAlarm" nillable="true" type="ns2:ISXCAlarm"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCAlarm">
+<xsd:sequence>
+<xsd:element name="ISXCElement" nillable="true" type="ns2:ISXCElement"/>
+<xsd:element name="activeTime" nillable="true" type="xsd:dateTime"/>
+<xsd:element name="ISXCAlarmSeverity" nillable="true" type="ns2:ISXCAlarmSeverity"/>
+<xsd:element name="ISXCAlarmState" nillable="true" type="ns2:ISXCAlarmState"/>
+<xsd:element name="description" type="xsd:string"/>
+<xsd:element name="deviceID" type="xsd:string"/>
+<xsd:element name="recommendedAction" type="xsd:string"/>
+<xsd:element name="resolvedTime" nillable="true" type="xsd:dateTime"/>
+<xsd:element name="sensorID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="ISXCAlarmSeverity">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ERROR"/>
+<xsd:enumeration value="FAILURE"/>
+<xsd:enumeration value="CRITICAL"/>
+<xsd:enumeration value="WARNING"/>
+<xsd:enumeration value="INFORMATIONAL"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ISXCElement">
+<xsd:sequence>
+<xsd:element name="ISXCElementType" nillable="true" type="ns2:ISXCElementType"/>
+<xsd:element name="id" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="ISXCElementType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ALARM"/>
+<xsd:enumeration value="CAPACITY_GROUP"/>
+<xsd:enumeration value="DEVICE"/>
+<xsd:enumeration value="DEVICE_GROUP"/>
+<xsd:enumeration value="PHYSICAL_CONTAINER"/>
+<xsd:enumeration value="SENSOR"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCAlarmState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ACTIVE"/>
+<xsd:enumeration value="RESOLVED"/>
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAlarmsDeltaHistoryForSensorResponse">
+    <wsdl:part name="getAlarmsDeltaHistoryForSensorResponse" element="ns1:getAlarmsDeltaHistoryForSensorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForSeverityResponse">
+    <wsdl:part name="getAlarmsHistoryForSeverityResponse" element="ns1:getAlarmsHistoryForSeverityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForDeviceResponse">
+    <wsdl:part name="getAlarmsHistoryForDeviceResponse" element="ns1:getAlarmsHistoryForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForSensorRequest">
+    <wsdl:part name="getActiveAlarmsForSensorRequest" element="ns1:getActiveAlarmsForSensorRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryForSeverityResponse">
+    <wsdl:part name="getAlarmsDeltaHistoryForSeverityResponse" element="ns1:getAlarmsDeltaHistoryForSeverityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryForSeverityRequest">
+    <wsdl:part name="getAlarmsDeltaHistoryForSeverityRequest" element="ns1:getAlarmsDeltaHistoryForSeverityRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlarmServiceFault">
+    <wsdl:part name="AlarmServiceFault" element="ns1:AlarmServiceFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllActiveAlarmsRequest">
+    <wsdl:part name="getAllActiveAlarmsRequest" element="ns1:getAllActiveAlarmsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllActiveAlarmsResponse">
+    <wsdl:part name="getAllActiveAlarmsResponse" element="ns1:getAllActiveAlarmsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForSeverityRequest">
+    <wsdl:part name="getAlarmsHistoryForSeverityRequest" element="ns1:getAlarmsHistoryForSeverityRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForSeverityResponse">
+    <wsdl:part name="getActiveAlarmsForSeverityResponse" element="ns1:getActiveAlarmsForSeverityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryResponse">
+    <wsdl:part name="getAlarmsDeltaHistoryResponse" element="ns1:getAlarmsDeltaHistoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForDeviceRequest">
+    <wsdl:part name="getActiveAlarmsForDeviceRequest" element="ns1:getActiveAlarmsForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForSensorResponse">
+    <wsdl:part name="getActiveAlarmsForSensorResponse" element="ns1:getActiveAlarmsForSensorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmByIDRequest">
+    <wsdl:part name="getAlarmByIDRequest" element="ns1:getAlarmByIDRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForDeviceRequest">
+    <wsdl:part name="getAlarmsHistoryForDeviceRequest" element="ns1:getAlarmsHistoryForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForSensorRequest">
+    <wsdl:part name="getAlarmsHistoryForSensorRequest" element="ns1:getAlarmsHistoryForSensorRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryRequest">
+    <wsdl:part name="getAlarmsDeltaHistoryRequest" element="ns1:getAlarmsDeltaHistoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryResponse">
+    <wsdl:part name="getAlarmsHistoryResponse" element="ns1:getAlarmsHistoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForSeverityRequest">
+    <wsdl:part name="getActiveAlarmsForSeverityRequest" element="ns1:getActiveAlarmsForSeverityRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryForSensorRequest">
+    <wsdl:part name="getAlarmsDeltaHistoryForSensorRequest" element="ns1:getAlarmsDeltaHistoryForSensorRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryRequest">
+    <wsdl:part name="getAlarmsHistoryRequest" element="ns1:getAlarmsHistoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsHistoryForSensorResponse">
+    <wsdl:part name="getAlarmsHistoryForSensorResponse" element="ns1:getAlarmsHistoryForSensorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryForDeviceRequest">
+    <wsdl:part name="getAlarmsDeltaHistoryForDeviceRequest" element="ns1:getAlarmsDeltaHistoryForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveAlarmsForDeviceResponse">
+    <wsdl:part name="getActiveAlarmsForDeviceResponse" element="ns1:getActiveAlarmsForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmByIDResponse">
+    <wsdl:part name="getAlarmByIDResponse" element="ns1:getAlarmByIDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlarmsDeltaHistoryForDeviceResponse">
+    <wsdl:part name="getAlarmsDeltaHistoryForDeviceResponse" element="ns1:getAlarmsDeltaHistoryForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISXCentralAlarmsService_v2_0">
+    <wsdl:operation name="getAlarmsDeltaHistoryForDevice">
+      <wsdl:input name="getAlarmsDeltaHistoryForDeviceRequest" message="tns:getAlarmsDeltaHistoryForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForDeviceResponse" message="tns:getAlarmsDeltaHistoryForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistoryForSeverity">
+      <wsdl:input name="getAlarmsDeltaHistoryForSeverityRequest" message="tns:getAlarmsDeltaHistoryForSeverityRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForSeverityResponse" message="tns:getAlarmsDeltaHistoryForSeverityResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistoryForSensor">
+      <wsdl:input name="getAlarmsDeltaHistoryForSensorRequest" message="tns:getAlarmsDeltaHistoryForSensorRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForSensorResponse" message="tns:getAlarmsDeltaHistoryForSensorResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForDevice">
+      <wsdl:input name="getActiveAlarmsForDeviceRequest" message="tns:getActiveAlarmsForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForDeviceResponse" message="tns:getActiveAlarmsForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForSeverity">
+      <wsdl:input name="getActiveAlarmsForSeverityRequest" message="tns:getActiveAlarmsForSeverityRequest">
+    </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForSeverityResponse" message="tns:getActiveAlarmsForSeverityResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForSeverity">
+      <wsdl:input name="getAlarmsHistoryForSeverityRequest" message="tns:getAlarmsHistoryForSeverityRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForSeverityResponse" message="tns:getAlarmsHistoryForSeverityResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForDevice">
+      <wsdl:input name="getAlarmsHistoryForDeviceRequest" message="tns:getAlarmsHistoryForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForDeviceResponse" message="tns:getAlarmsHistoryForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmByID">
+      <wsdl:input name="getAlarmByIDRequest" message="tns:getAlarmByIDRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmByIDResponse" message="tns:getAlarmByIDResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForSensor">
+      <wsdl:input name="getAlarmsHistoryForSensorRequest" message="tns:getAlarmsHistoryForSensorRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForSensorResponse" message="tns:getAlarmsHistoryForSensorResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForSensor">
+      <wsdl:input name="getActiveAlarmsForSensorRequest" message="tns:getActiveAlarmsForSensorRequest">
+    </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForSensorResponse" message="tns:getActiveAlarmsForSensorResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllActiveAlarms">
+      <wsdl:input name="getAllActiveAlarmsRequest" message="tns:getAllActiveAlarmsRequest">
+    </wsdl:input>
+      <wsdl:output name="getAllActiveAlarmsResponse" message="tns:getAllActiveAlarmsResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistory">
+      <wsdl:input name="getAlarmsHistoryRequest" message="tns:getAlarmsHistoryRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryResponse" message="tns:getAlarmsHistoryResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistory">
+      <wsdl:input name="getAlarmsDeltaHistoryRequest" message="tns:getAlarmsDeltaHistoryRequest">
+    </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryResponse" message="tns:getAlarmsDeltaHistoryResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault" message="tns:AlarmServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISXCentralAlarmsService_v2_0HttpBinding" type="tns:ISXCentralAlarmsService_v2_0">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAlarmsDeltaHistoryForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsDeltaHistoryForDevice"/>
+      <wsdl:input name="getAlarmsDeltaHistoryForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistoryForSeverity">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsDeltaHistoryForSeverity"/>
+      <wsdl:input name="getAlarmsDeltaHistoryForSeverityRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForSeverityResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistoryForSensor">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsDeltaHistoryForSensor"/>
+      <wsdl:input name="getAlarmsDeltaHistoryForSensorRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryForSensorResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getActiveAlarmsForDevice"/>
+      <wsdl:input name="getActiveAlarmsForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForSeverity">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getActiveAlarmsForSeverity"/>
+      <wsdl:input name="getActiveAlarmsForSeverityRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForSeverityResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForSeverity">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsHistoryForSeverity"/>
+      <wsdl:input name="getAlarmsHistoryForSeverityRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForSeverityResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsHistoryForDevice"/>
+      <wsdl:input name="getAlarmsHistoryForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmByID">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmByID"/>
+      <wsdl:input name="getAlarmByIDRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmByIDResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistoryForSensor">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsHistoryForSensor"/>
+      <wsdl:input name="getAlarmsHistoryForSensorRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryForSensorResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveAlarmsForSensor">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getActiveAlarmsForSensor"/>
+      <wsdl:input name="getActiveAlarmsForSensorRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getActiveAlarmsForSensorResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllActiveAlarms">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAllActiveAlarms"/>
+      <wsdl:input name="getAllActiveAlarmsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllActiveAlarmsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsHistory">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsHistory"/>
+      <wsdl:input name="getAlarmsHistoryRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsHistoryResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAlarmsDeltaHistory">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralAlarms-v2/getAlarmsDeltaHistory"/>
+      <wsdl:input name="getAlarmsDeltaHistoryRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlarmsDeltaHistoryResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlarmServiceFault">
+        <wsdlsoap:fault name="AlarmServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISXCentralAlarmsService_v2_0">
+    <wsdl:port name="ISXCentralAlarmsService_v2_0HttpPort" binding="tns:ISXCentralAlarmsService_v2_0HttpBinding">
+      <wsdlsoap:address location="http://SERVER_REPLACE_ME/integration/services/ISXCentralAlarmsService_v2_0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

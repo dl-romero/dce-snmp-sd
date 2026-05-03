@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2" xmlns:ns2="http://www.apc.com/stdws/xsd/ISXCentral/2009/10" xmlns:ns1="http://www.apc.com/stdws/xsd/ISXCentralDeviceGroups-v2" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentralDeviceGroups-v2">
+<xsd:complexType name="GetDeviceGroupsForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceGroupsForDeviceRequest" type="ns1:GetDeviceGroupsForDeviceRequest"/>
+<xsd:complexType name="GetDeviceGroupsForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCDeviceGroup" type="ns2:ArrayOfISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceGroupsForDeviceResponse" type="ns1:GetDeviceGroupsForDeviceResponse"/>
+<xsd:complexType name="DeviceGroupFaultDetail">
+<xsd:sequence>
+<xsd:element name="FaultMsg" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="DeviceGroupServiceFault" type="ns1:DeviceGroupFaultDetail"/>
+<xsd:complexType name="GetUniqueDeviceGroupsForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getUniqueDeviceGroupsForDeviceRequest" type="ns1:GetUniqueDeviceGroupsForDeviceRequest"/>
+<xsd:complexType name="GetUniqueDeviceGroupsForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCDeviceGroup" type="ns2:ArrayOfISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getUniqueDeviceGroupsForDeviceResponse" type="ns1:GetUniqueDeviceGroupsForDeviceResponse"/>
+<xsd:complexType name="GetDevicesForGroupIDRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDevicesForGroupIDRequest" type="ns1:GetDevicesForGroupIDRequest"/>
+<xsd:complexType name="GetDevicesForGroupIDResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCDevice" type="ns2:ArrayOfISXCDevice"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDevicesForGroupIDResponse" type="ns1:GetDevicesForGroupIDResponse"/>
+<xsd:complexType name="GetDeviceGroupByIDRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceGroupByIDRequest" type="ns1:GetDeviceGroupByIDRequest"/>
+<xsd:complexType name="GetDeviceGroupByIDResponse">
+<xsd:sequence>
+<xsd:element name="ISXCDeviceGroup" nillable="true" type="ns2:ISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceGroupByIDResponse" type="ns1:GetDeviceGroupByIDResponse"/>
+<xsd:complexType name="GetRootDeviceGroupRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getRootDeviceGroupRequest" type="ns1:GetRootDeviceGroupRequest"/>
+<xsd:complexType name="GetRootDeviceGroupResponse">
+<xsd:sequence>
+<xsd:element name="ISXCDeviceGroup" nillable="true" type="ns2:ISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getRootDeviceGroupResponse" type="ns1:GetRootDeviceGroupResponse"/>
+<xsd:complexType name="GetChildDeviceGroupsRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getChildDeviceGroupsRequest" type="ns1:GetChildDeviceGroupsRequest"/>
+<xsd:complexType name="GetChildDeviceGroupsResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCDeviceGroup" type="ns2:ArrayOfISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getChildDeviceGroupsResponse" type="ns1:GetChildDeviceGroupsResponse"/>
+<xsd:complexType name="GetAllDeviceGroupsRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAllDeviceGroupsRequest" type="ns1:GetAllDeviceGroupsRequest"/>
+<xsd:complexType name="GetAllDeviceGroupsResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCDeviceGroup" type="ns2:ArrayOfISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAllDeviceGroupsResponse" type="ns1:GetAllDeviceGroupsResponse"/>
+<xsd:complexType name="GetParentDeviceGroupRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getParentDeviceGroupRequest" type="ns1:GetParentDeviceGroupRequest"/>
+<xsd:complexType name="GetParentDeviceGroupResponse">
+<xsd:sequence>
+<xsd:element name="ISXCDeviceGroup" nillable="true" type="ns2:ISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getParentDeviceGroupResponse" type="ns1:GetParentDeviceGroupResponse"/>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentral/2009/10">
+<xsd:complexType name="ArrayOfISXCDeviceGroup">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCDeviceGroup" nillable="true" type="ns2:ISXCDeviceGroup"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCDeviceGroup">
+<xsd:sequence>
+<xsd:element name="ISXCNamedElement" type="ns2:ISXCNamedElement"/>
+<xsd:element name="deviceCount" type="xsd:int"/>
+<xsd:element name="isRoot" type="xsd:boolean"/>
+<xsd:element name="parentID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCNamedElement">
+<xsd:sequence>
+<xsd:element name="ISXCElement" nillable="true" type="ns2:ISXCElement"/>
+<xsd:element name="name" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCElement">
+<xsd:sequence>
+<xsd:element name="ISXCElementType" nillable="true" type="ns2:ISXCElementType"/>
+<xsd:element name="id" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="ISXCElementType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ALARM"/>
+<xsd:enumeration value="CAPACITY_GROUP"/>
+<xsd:enumeration value="DEVICE"/>
+<xsd:enumeration value="DEVICE_GROUP"/>
+<xsd:enumeration value="PHYSICAL_CONTAINER"/>
+<xsd:enumeration value="SENSOR"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ArrayOfISXCDevice">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCDevice" nillable="true" type="ns2:ISXCDevice"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCDevice">
+<xsd:sequence>
+<xsd:element name="ISXCNamedElement" nillable="true" type="ns2:ISXCNamedElement"/>
+<xsd:element name="ISXCCommState" nillable="true" type="ns2:ISXCCommState"/>
+<xsd:element name="ISXCDeviceType" nillable="true" type="ns2:ISXCDeviceType"/>
+<xsd:element minOccurs="0" name="hostName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="ipAddress" nillable="true" type="xsd:string"/>
+<xsd:element name="location" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modelName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modelNumber" nillable="true" type="xsd:string"/>
+<xsd:element name="parentID" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+<xsd:element name="ISXCDeviceState" nillable="true" type="ns2:ISXCDeviceState"/>
+<xsd:element minOccurs="0" name="supplemental" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+<xsd:attribute name="isPrivate" type="xsd:boolean"/>
+</xsd:complexType>
+<xsd:simpleType name="ISXCCommState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ONLINE"/>
+<xsd:enumeration value="OFFLINE"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCDeviceState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="INITIALIZING"/>
+<xsd:enumeration value="NONE"/>
+<xsd:enumeration value="OK"/>
+<xsd:enumeration value="INFORMATIONAL"/>
+<xsd:enumeration value="WARNING"/>
+<xsd:enumeration value="ERROR"/>
+<xsd:enumeration value="CRITICAL"/>
+<xsd:enumeration value="FAILURE"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCDeviceType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="AC"/>
+<xsd:enumeration value="BATTERY_MANAGER"/>
+<xsd:enumeration value="BRANCH_CIRCUIT_MONITOR"/>
+<xsd:enumeration value="CAMERA_POD"/>
+<xsd:enumeration value="CCTV_POD"/>
+<xsd:enumeration value="CHILLER"/>
+<xsd:enumeration value="CONSOLE_PORT_SERVER"/>
+<xsd:enumeration value="DC_RECTIFIER"/>
+<xsd:enumeration value="ENVIRONMENT"/>
+<xsd:enumeration value="GENERATOR"/>
+<xsd:enumeration value="INFRASTRUXURE"/>
+<xsd:enumeration value="KVM_SWITCH"/>
+<xsd:enumeration value="NETBOTZ_WALL"/>
+<xsd:enumeration value="NETBOTZ_RACK"/>
+<xsd:enumeration value="NETBOTZ_ENCLOSURE"/>
+<xsd:enumeration value="NETWORK_DEVICE"/>
+<xsd:enumeration value="POWER_DISTRIBUTION"/>
+<xsd:enumeration value="POWER_METER"/>
+<xsd:enumeration value="RACK_ACCESS_DEVICE"/>
+<xsd:enumeration value="RACK_MANAGER"/>
+<xsd:enumeration value="RACK_POWER_DISTRIBUTION"/>
+<xsd:enumeration value="SENSOR_POD"/>
+<xsd:enumeration value="SERVER"/>
+<xsd:enumeration value="SHARED_DEVICE"/>
+<xsd:enumeration value="SNMP_DEVICE"/>
+<xsd:enumeration value="STATIC_TRANSFER_SWITCH"/>
+<xsd:enumeration value="TRANSFER_SWITCH"/>
+<xsd:enumeration value="UPS"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getChildDeviceGroupsRequest">
+    <wsdl:part name="getChildDeviceGroupsRequest" element="ns1:getChildDeviceGroupsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllDeviceGroupsResponse">
+    <wsdl:part name="getAllDeviceGroupsResponse" element="ns1:getAllDeviceGroupsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceGroupsForDeviceRequest">
+    <wsdl:part name="getDeviceGroupsForDeviceRequest" element="ns1:getDeviceGroupsForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUniqueDeviceGroupsForDeviceRequest">
+    <wsdl:part name="getUniqueDeviceGroupsForDeviceRequest" element="ns1:getUniqueDeviceGroupsForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getParentDeviceGroupResponse">
+    <wsdl:part name="getParentDeviceGroupResponse" element="ns1:getParentDeviceGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceGroupsForDeviceResponse">
+    <wsdl:part name="getDeviceGroupsForDeviceResponse" element="ns1:getDeviceGroupsForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootDeviceGroupRequest">
+    <wsdl:part name="getRootDeviceGroupRequest" element="ns1:getRootDeviceGroupRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUniqueDeviceGroupsForDeviceResponse">
+    <wsdl:part name="getUniqueDeviceGroupsForDeviceResponse" element="ns1:getUniqueDeviceGroupsForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChildDeviceGroupsResponse">
+    <wsdl:part name="getChildDeviceGroupsResponse" element="ns1:getChildDeviceGroupsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getParentDeviceGroupRequest">
+    <wsdl:part name="getParentDeviceGroupRequest" element="ns1:getParentDeviceGroupRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootDeviceGroupResponse">
+    <wsdl:part name="getRootDeviceGroupResponse" element="ns1:getRootDeviceGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDevicesForGroupIDRequest">
+    <wsdl:part name="getDevicesForGroupIDRequest" element="ns1:getDevicesForGroupIDRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllDeviceGroupsRequest">
+    <wsdl:part name="getAllDeviceGroupsRequest" element="ns1:getAllDeviceGroupsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceGroupByIDRequest">
+    <wsdl:part name="getDeviceGroupByIDRequest" element="ns1:getDeviceGroupByIDRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeviceGroupServiceFault">
+    <wsdl:part name="DeviceGroupServiceFault" element="ns1:DeviceGroupServiceFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceGroupByIDResponse">
+    <wsdl:part name="getDeviceGroupByIDResponse" element="ns1:getDeviceGroupByIDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDevicesForGroupIDResponse">
+    <wsdl:part name="getDevicesForGroupIDResponse" element="ns1:getDevicesForGroupIDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISXCentralDeviceGroupsService_v2_0">
+    <wsdl:operation name="getDeviceGroupsForDevice">
+      <wsdl:input name="getDeviceGroupsForDeviceRequest" message="tns:getDeviceGroupsForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getDeviceGroupsForDeviceResponse" message="tns:getDeviceGroupsForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUniqueDeviceGroupsForDevice">
+      <wsdl:input name="getUniqueDeviceGroupsForDeviceRequest" message="tns:getUniqueDeviceGroupsForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getUniqueDeviceGroupsForDeviceResponse" message="tns:getUniqueDeviceGroupsForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDevicesForGroupID">
+      <wsdl:input name="getDevicesForGroupIDRequest" message="tns:getDevicesForGroupIDRequest">
+    </wsdl:input>
+      <wsdl:output name="getDevicesForGroupIDResponse" message="tns:getDevicesForGroupIDResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeviceGroupByID">
+      <wsdl:input name="getDeviceGroupByIDRequest" message="tns:getDeviceGroupByIDRequest">
+    </wsdl:input>
+      <wsdl:output name="getDeviceGroupByIDResponse" message="tns:getDeviceGroupByIDResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootDeviceGroup">
+      <wsdl:input name="getRootDeviceGroupRequest" message="tns:getRootDeviceGroupRequest">
+    </wsdl:input>
+      <wsdl:output name="getRootDeviceGroupResponse" message="tns:getRootDeviceGroupResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getChildDeviceGroups">
+      <wsdl:input name="getChildDeviceGroupsRequest" message="tns:getChildDeviceGroupsRequest">
+    </wsdl:input>
+      <wsdl:output name="getChildDeviceGroupsResponse" message="tns:getChildDeviceGroupsResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDeviceGroups">
+      <wsdl:input name="getAllDeviceGroupsRequest" message="tns:getAllDeviceGroupsRequest">
+    </wsdl:input>
+      <wsdl:output name="getAllDeviceGroupsResponse" message="tns:getAllDeviceGroupsResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParentDeviceGroup">
+      <wsdl:input name="getParentDeviceGroupRequest" message="tns:getParentDeviceGroupRequest">
+    </wsdl:input>
+      <wsdl:output name="getParentDeviceGroupResponse" message="tns:getParentDeviceGroupResponse">
+    </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault" message="tns:DeviceGroupServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISXCentralDeviceGroupService_v2_0HttpBinding" type="tns:ISXCentralDeviceGroupsService_v2_0">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getDeviceGroupsForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getDeviceGroupsForDevice"/>
+      <wsdl:input name="getDeviceGroupsForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDeviceGroupsForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUniqueDeviceGroupsForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getUniqueDeviceGroupsForDevice"/>
+      <wsdl:input name="getUniqueDeviceGroupsForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUniqueDeviceGroupsForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDevicesForGroupID">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getDevicesForGroupID"/>
+      <wsdl:input name="getDevicesForGroupIDRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDevicesForGroupIDResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeviceGroupByID">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getDeviceGroupByID"/>
+      <wsdl:input name="getDeviceGroupByIDRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDeviceGroupByIDResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootDeviceGroup">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getRootDeviceGroup"/>
+      <wsdl:input name="getRootDeviceGroupRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRootDeviceGroupResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getChildDeviceGroups">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getChildDeviceGroups"/>
+      <wsdl:input name="getChildDeviceGroupsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getChildDeviceGroupsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDeviceGroups">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getAllDeviceGroups"/>
+      <wsdl:input name="getAllDeviceGroupsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllDeviceGroupsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParentDeviceGroup">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralDeviceGroups-v2/getParentDeviceGroup"/>
+      <wsdl:input name="getParentDeviceGroupRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getParentDeviceGroupResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceGroupServiceFault">
+        <wsdlsoap:fault name="DeviceGroupServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISXCentralDeviceGroupService_v2_0">
+    <wsdl:port name="ISXCentralDeviceGroupService_v2_0HttpPort" binding="tns:ISXCentralDeviceGroupService_v2_0HttpBinding">
+      <wsdlsoap:address location="http://SERVER_REPLACE_ME/integration/services/ISXCentralDeviceGroupService_v2_0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

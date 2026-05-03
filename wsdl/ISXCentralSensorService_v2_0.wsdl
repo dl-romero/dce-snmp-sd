@@ -1,0 +1,1111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2" xmlns:ns2="http://www.apc.com/stdws/xsd/ISXCentral/2009/10" xmlns:ns1="http://www.apc.com/stdws/xsd/ISXCentralSensors-v2" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentralSensors-v2">
+<xsd:complexType name="GetMultipleAverageSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="endDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ArrayOfISXCElementID" type="tns:ArrayOfString"/>
+<xsd:element minOccurs="0" name="startDate" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultipleAverageSensorDataRequest" type="ns1:GetMultipleAverageSensorDataRequest"/>
+<xsd:complexType name="GetMultipleAverageSensorDataResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ArrayOfISXCSensorDataSet" nillable="true" type="ns2:ArrayOfISXCSensorDataSet"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultipleAverageSensorDataResponse" type="ns1:GetMultipleAverageSensorDataResponse"/>
+<xsd:complexType name="SensorServiceFaultDetail">
+<xsd:sequence>
+<xsd:element name="FaultMsg" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="SensorServiceFault" type="ns1:SensorServiceFaultDetail"/>
+<xsd:complexType name="GetMultipleSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ArrayOfISXCElementID" type="tns:ArrayOfString"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultipleSensorDataRequest" type="ns1:GetMultipleSensorDataRequest"/>
+<xsd:complexType name="GetMultipleSensorDataResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ArrayOfISXCSensorDataSet" nillable="true" type="ns2:ArrayOfISXCSensorDataSet"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultipleSensorDataResponse" type="ns1:GetMultipleSensorDataResponse"/>
+<xsd:complexType name="GetSensorsByIDsRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ArrayOfISXCElementID" type="tns:ArrayOfString"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsByIDsRequest" type="ns1:GetSensorsByIDsRequest"/>
+<xsd:complexType name="GetSensorsByIDsResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCSensor" nillable="true" type="ns2:ArrayOfISXCSensor"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsByIDsResponse" type="ns1:GetSensorsByIDsResponse"/>
+<xsd:complexType name="GetSensorsByTypeRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCSensorType" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsByTypeRequest" type="ns1:GetSensorsByTypeRequest"/>
+<xsd:complexType name="GetSensorsByTypeResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCSensor" nillable="true" type="ns2:ArrayOfISXCSensor"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsByTypeResponse" type="ns1:GetSensorsByTypeResponse"/>
+<xsd:complexType name="GetAverageSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="endDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="startDate" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAverageSensorDataRequest" type="ns1:GetAverageSensorDataRequest"/>
+<xsd:complexType name="GetAverageSensorDataResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ISXCSensorData" nillable="true" type="ns2:ISXCSensorData"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getAverageSensorDataResponse" type="ns1:GetAverageSensorDataResponse"/>
+<xsd:complexType name="GetDeviceForSensorRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceForSensorRequest" type="ns1:GetDeviceForSensorRequest"/>
+<xsd:complexType name="GetDeviceForSensorResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ISXCDevice" nillable="true" type="ns2:ISXCDevice"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getDeviceForSensorResponse" type="ns1:GetDeviceForSensorResponse"/>
+<xsd:complexType name="GetMultiplePeakSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="endDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ArrayOfISXCElementID" type="tns:ArrayOfString"/>
+<xsd:element minOccurs="0" name="startDate" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultiplePeakSensorDataRequest" type="ns1:GetMultiplePeakSensorDataRequest"/>
+<xsd:complexType name="GetMultiplePeakSensorDataResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ArrayOfISXCSensorDataSet" nillable="true" type="ns2:ArrayOfISXCSensorDataSet"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getMultiplePeakSensorDataResponse" type="ns1:GetMultiplePeakSensorDataResponse"/>
+<xsd:complexType name="GetSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorDataRequest" type="ns1:GetSensorDataRequest"/>
+<xsd:complexType name="GetSensorDataResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ISXCSensorData" nillable="true" type="ns2:ISXCSensorData"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorDataResponse" type="ns1:GetSensorDataResponse"/>
+<xsd:complexType name="GetSensorEnumerationsRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorEnumerationsRequest" type="ns1:GetSensorEnumerationsRequest"/>
+<xsd:complexType name="GetSensorEnumerationsResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfEnums" nillable="true" type="tns:ArrayOfString"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorEnumerationsResponse" type="ns1:GetSensorEnumerationsResponse"/>
+<xsd:complexType name="GetSensorDataRangeRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="endDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="startDate" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorDataRangeRequest" type="ns1:GetSensorDataRangeRequest"/>
+<xsd:complexType name="GetSensorDataRangeResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ArrayOfISXCSensorData" nillable="true" type="ns2:ArrayOfISXCSensorData"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorDataRangeResponse" type="ns1:GetSensorDataRangeResponse"/>
+<xsd:complexType name="InitializeSensorServiceRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="parameters" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="initializeSensorServiceRequest" type="ns1:InitializeSensorServiceRequest"/>
+<xsd:complexType name="InitializeSensorServiceResponse">
+<xsd:sequence>
+<xsd:element name="result" nillable="true" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="initializeSensorServiceResponse" type="ns1:InitializeSensorServiceResponse"/>
+<xsd:complexType name="GetHistoricalSensorDataRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="endDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element minOccurs="0" name="maxDataPoints" type="xsd:int"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="startDate" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getHistoricalSensorDataRequest" type="ns1:GetHistoricalSensorDataRequest"/>
+<xsd:complexType name="GetHistoricalSensorDataResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCSensorData" nillable="true" type="ns2:ArrayOfISXCSensorData"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getHistoricalSensorDataResponse" type="ns1:GetHistoricalSensorDataResponse"/>
+<xsd:complexType name="GetSensorByIDRequest">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorByIDRequest" type="ns1:GetSensorByIDRequest"/>
+<xsd:complexType name="GetSensorByIDResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="ISXCSensor" nillable="true" type="ns2:ISXCSensor"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorByIDResponse" type="ns1:GetSensorByIDResponse"/>
+<xsd:complexType name="GetSensorsForDeviceRequest">
+<xsd:sequence>
+<xsd:element name="ISXCElementID" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+<xsd:element minOccurs="0" name="ISXCSensorType" type="ns2:ISXCSensorType"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsForDeviceRequest" type="ns1:GetSensorsForDeviceRequest"/>
+<xsd:complexType name="GetSensorsForDeviceResponse">
+<xsd:sequence>
+<xsd:element name="ArrayOfISXCSensor" nillable="true" type="ns2:ArrayOfISXCSensor"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getSensorsForDeviceResponse" type="ns1:GetSensorsForDeviceResponse"/>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2">
+<xsd:complexType name="ArrayOfString">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.apc.com/stdws/xsd/ISXCentral/2009/10">
+<xsd:complexType name="ArrayOfISXCSensorDataSet">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCSensorDataSet" nillable="true" type="ns2:ISXCSensorDataSet"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCSensorDataSet">
+<xsd:sequence>
+<xsd:element name="ISXCSensorData" nillable="true" type="ns2:ISXCSensorData"/>
+<xsd:element name="ISXCElementID" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCSensorData">
+<xsd:sequence>
+<xsd:element name="timeStamp" nillable="true" type="xsd:dateTime"/>
+<xsd:element name="units" nillable="true" type="xsd:string"/>
+<xsd:element name="value" nillable="true" type="xsd:string"/>
+<xsd:element name="ISXCValueType" nillable="true" type="ns2:ISXCValueType"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="ISXCValueType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="BOOLEAN"/>
+<xsd:enumeration value="DATE"/>
+<xsd:enumeration value="DATE_TIME"/>
+<xsd:enumeration value="DOUBLE"/>
+<xsd:enumeration value="ENUM"/>
+<xsd:enumeration value="FLOAT"/>
+<xsd:enumeration value="INTEGER"/>
+<xsd:enumeration value="STRING"/>
+<xsd:enumeration value="TIME"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ArrayOfISXCSensor">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCSensor" nillable="true" type="ns2:ISXCSensor"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCSensor">
+<xsd:sequence>
+<xsd:element name="ISXCNamedElement" nillable="true" type="ns2:ISXCNamedElement"/>
+<xsd:element minOccurs="0" name="index" nillable="true" type="xsd:string"/>
+<xsd:element name="parentID" nillable="true" type="xsd:string"/>
+<xsd:element name="ISXCSensorType" nillable="true" type="ns2:ISXCSensorType"/>
+<xsd:element name="ISXCSensorState" nillable="true" type="ns2:ISXCSensorState"/>
+<xsd:element minOccurs="0" name="supplemental" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCNamedElement">
+<xsd:sequence>
+<xsd:element name="ISXCElement" nillable="true" type="ns2:ISXCElement"/>
+<xsd:element name="name" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ISXCElement">
+<xsd:sequence>
+<xsd:element name="ISXCElementType" nillable="true" type="ns2:ISXCElementType"/>
+<xsd:element name="id" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="ISXCElementType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ALARM"/>
+<xsd:enumeration value="CAPACITY_GROUP"/>
+<xsd:enumeration value="DEVICE"/>
+<xsd:enumeration value="DEVICE_GROUP"/>
+<xsd:enumeration value="PHYSICAL_CONTAINER"/>
+<xsd:enumeration value="SENSOR"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCSensorState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="INITIALIZING"/>
+<xsd:enumeration value="NONE"/>
+<xsd:enumeration value="OK"/>
+<xsd:enumeration value="INFORMATIONAL"/>
+<xsd:enumeration value="WARNING"/>
+<xsd:enumeration value="ERROR"/>
+<xsd:enumeration value="CRITICAL"/>
+<xsd:enumeration value="FAILURE"/>
+<xsd:enumeration value="UNKNOWN"/>
+<xsd:enumeration value="DISCONNECTED_OK"/>
+<xsd:enumeration value="DISCONNECTED_FAILURE"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCSensorType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ACTUAL_COIL_FLUID_COOLING"/>
+<xsd:enumeration value="ACTUAL_DX_COOLING_DEMAND"/>
+<xsd:enumeration value="ACTUAL_ELECTRIC_REHEATING"/>
+<xsd:enumeration value="ACTUAL_HUMIDIFICATION"/>
+<xsd:enumeration value="AIRFLOW"/>
+<xsd:enumeration value="AIR_FILTER_RUNHOURS"/>
+<xsd:enumeration value="ALARM_STATUS"/>
+<xsd:enumeration value="AMMETER"/>
+<xsd:enumeration value="ANALOG"/>
+<xsd:enumeration value="AUDIO"/>
+<xsd:enumeration value="AUTOMATIC_OPERATION"/>
+<xsd:enumeration value="AUX_POWER_STATUS"/>
+<xsd:enumeration value="AVERAGE_CURRENT"/>
+<xsd:enumeration value="AVERAGE_VOLTAGE_LL"/>
+<xsd:enumeration value="AVERAGE_VOLTAGE_LN"/>
+<xsd:enumeration value="AVERAGE_REMOTE_HUMIDITY"/>
+<xsd:enumeration value="AVERAGE_REMOTE_TEMPERATURE"/>
+<xsd:enumeration value="AVERAGE_RETURN_HUMIDITY"/>
+<xsd:enumeration value="AVERAGE_RETURN_TEMPERATURE"/>
+<xsd:enumeration value="BACKUP_PRESENT"/>
+<xsd:enumeration value="BAD_EXTERNAL_BATTERY_PACKS"/>
+<xsd:enumeration value="BATTERY_AGE"/>
+<xsd:enumeration value="BATTERY_CAPACITY"/>
+<xsd:enumeration value="BATTERY_CHARGER_FAULT_STATE"/>
+<xsd:enumeration value="BATTERY_CURRENT"/>
+<xsd:enumeration value="BATTERY_REPLACEMENT"/>
+<xsd:enumeration value="BATTERY_STATUS"/>
+<xsd:enumeration value="BATTERY_TEMPERATURE"/>
+<xsd:enumeration value="BATTERY_VOLTAGE"/>
+<xsd:enumeration value="BEACON"/>
+<xsd:enumeration value="BLOWER_CONTROLLER_RUNHOURS"/>
+<xsd:enumeration value="BLOWER_CURRENT"/>
+<xsd:enumeration value="BLOWER_FREQUENCY"/>
+<xsd:enumeration value="BLOWER_INVERTER_TEMPERATURE"/>
+<xsd:enumeration value="BLOWER_LINK_VOLTAGE"/>
+<xsd:enumeration value="BLOWER_RUNHOURS"/>
+<xsd:enumeration value="BLOWER_SPEED"/>
+<xsd:enumeration value="BLOWER_TORQUE"/>
+<xsd:enumeration value="BLOWER_VOLTAGE"/>
+<xsd:enumeration value="BUTTON"/>
+<xsd:enumeration value="BYPASS_INPUT_CURRENT"/>
+<xsd:enumeration value="BYPASS_INPUT_FREQUENCY"/>
+<xsd:enumeration value="BYPASS_INPUT_VOLTAGE"/>
+<xsd:enumeration value="BYPASS_PHASE_ORIENTATION"/>
+<xsd:enumeration value="CAMERA_MOTION"/>
+<xsd:enumeration value="COIL_DIFF_PRESSURE"/>
+<xsd:enumeration value="COIL_FLUID_COOLING_DEMAND"/>
+<xsd:enumeration value="COIL_FLUID_DEHUMIDIFY_DEMAND"/>
+<xsd:enumeration value="COIL_FLUID_TEMPERATURE"/>
+<xsd:enumeration value="COIL_FLUID_VALVE_POSITION"/>
+<xsd:enumeration value="COMM_STATUS"/>
+<xsd:enumeration value="COMPRESSOR_CONTROLLER_TEMPERATURE"/>
+<xsd:enumeration value="COMPRESSOR_CURRENT"/>
+<xsd:enumeration value="COMPRESSOR_HEAT_SINK_TEMPERATURE"/>
+<xsd:enumeration value="COMPRESSOR_LINK_VOLTAGE"/>
+<xsd:enumeration value="COMPRESSOR_POWER"/>
+<xsd:enumeration value="COMPRESSOR_RUNHOURS"/>
+<xsd:enumeration value="COMPRESSOR_SPEED"/>
+<xsd:enumeration value="COMPRESSOR_STATUS"/>
+<xsd:enumeration value="COMPRESSOR_VOLTAGE"/>
+<xsd:enumeration value="CONDENSER_FAN_RUNHOURS"/>
+<xsd:enumeration value="CONDENSER_FAN_SPEED"/>
+<xsd:enumeration value="CONDENSER_FAN_STATUS"/>
+<xsd:enumeration value="CONDENSER_INLET_TEMPERATURE"/>
+<xsd:enumeration value="CONDENSER_OUTLET_TEMPERATURE"/>
+<xsd:enumeration value="CONDENSATE_PUMP_RUNHOURS"/>
+<xsd:enumeration value="CONDENSATE_PUMP_STATUS"/>
+<xsd:enumeration value="COOLANT_LEVEL"/>
+<xsd:enumeration value="COOLING_DEMAND"/>
+<xsd:enumeration value="COOLING_OUTPUT"/>
+<xsd:enumeration value="COOLING_STATE"/>
+<xsd:enumeration value="COOLING_UNIT_COUNT"/>
+<xsd:enumeration value="CURRENT"/>
+<xsd:enumeration value="CURRENT_APPARENT_RMS"/>
+<xsd:enumeration value="CURRENT_DEMAND"/>
+<xsd:enumeration value="CURRENT_DEMAND_PEAK"/>
+<xsd:enumeration value="CURRENT_DEMAND_PEAK_TOTAL"/>
+<xsd:enumeration value="CURRENT_DEMAND_TOTAL"/>
+<xsd:enumeration value="CURRENT_GROUND"/>
+<xsd:enumeration value="CURRENT_NEUTRAL"/>
+<xsd:enumeration value="CURRENT_THD"/>
+<xsd:enumeration value="DC_CURRENT_TOTAL"/>
+<xsd:enumeration value="DEHUMIDIFIER_DEMAND"/>
+<xsd:enumeration value="DEHUMIDIFIER_ENABLED"/>
+<xsd:enumeration value="DEHUMIDIFIER_OUTPUT"/>
+<xsd:enumeration value="DEHUMIDIFIER_STATE"/>
+<xsd:enumeration value="DEVICE_STATUS"/>
+<xsd:enumeration value="DEW_POINT"/>
+<xsd:enumeration value="DIGITAL"/>
+<xsd:enumeration value="DISCHARGE_PRESSURE"/>
+<xsd:enumeration value="DOOR_SWITCH"/>
+<xsd:enumeration value="DX_COOLING_DEMAND"/>
+<xsd:enumeration value="DX_HUMIDIFIER_DEMAND"/>
+<xsd:enumeration value="ELECTRIC_HEATING_STATE"/>
+<xsd:enumeration value="ELECTRIC_REHEAT_DEMAND"/>
+<xsd:enumeration value="ENERGY_DELIVERED_KVARH"/>
+<xsd:enumeration value="ENERGY_DELIVERED_TOTAL_KVARH"/>
+<xsd:enumeration value="ENERGY_DELIVERED_KWH"/>
+<xsd:enumeration value="ENERGY_DELIVERED_TOTAL_KWH"/>
+<xsd:enumeration value="ENERGY_KVAH"/>
+<xsd:enumeration value="ENERGY_RECEIVED_KVARH"/>
+<xsd:enumeration value="ENERGY_RECEIVED_TOTAL_KVARH"/>
+<xsd:enumeration value="ENERGY_RECEIVED_KWH"/>
+<xsd:enumeration value="ENERGY_RECEIVED_TOTAL_KWH"/>
+<xsd:enumeration value="ENERGY_TOTAL_KVAH"/>
+<xsd:enumeration value="ENERGY_TOTAL_KVARH"/>
+<xsd:enumeration value="ENERGY_TOTAL_KWH"/>
+<xsd:enumeration value="ENGINE_START_STATUS"/>
+<xsd:enumeration value="ETHERNET_LINK_STATUS"/>
+<xsd:enumeration value="EVAPORATOR_FAN_RUNHOURS"/>
+<xsd:enumeration value="EVAPORATOR_FAN_SPEED"/>
+<xsd:enumeration value="EXTERNAL_BATTERY_PACKS"/>
+<xsd:enumeration value="EXTERNAL_CONTACT"/>
+<xsd:enumeration value="EXTERNAL_CONTACT_NORMAL"/>
+<xsd:enumeration value="EXTERNAL_HUMIDITY"/>
+<xsd:enumeration value="EXTERNAL_TEMPERATURE"/>
+<xsd:enumeration value="FAN_FLOWRATE"/>
+<xsd:enumeration value="FAN_FLOWRATE_TOTAL"/>
+<xsd:enumeration value="FAN_RUNHOURS"/>
+<xsd:enumeration value="FAN_SPEED"/>
+<xsd:enumeration value="FAN_STATUS"/>
+<xsd:enumeration value="FILTER_DIFF_PRESSURE"/>
+<xsd:enumeration value="FLUID_FLOW"/>
+<xsd:enumeration value="FLUID_VALVE_POSITION"/>
+<xsd:enumeration value="FREQUENCY"/>
+<xsd:enumeration value="FRONT_DOOR_ALARM_STATUS"/>
+<xsd:enumeration value="FRONT_DOOR_ALLOWANCE"/>
+<xsd:enumeration value="FRONT_DOOR_HANDLE_STATUS"/>
+<xsd:enumeration value="FRONT_DOOR_LOCK_STATUS"/>
+<xsd:enumeration value="FRONT_DOOR_STATUS"/>
+<xsd:enumeration value="GENERATOR_MODE"/>
+<xsd:enumeration value="GENERATOR_STATUS"/>
+<xsd:enumeration value="GROUP_COOLING_DEMAND"/>
+<xsd:enumeration value="GROUP_COOLING_OUTPUT"/>
+<xsd:enumeration value="GROUP_DEHUMIDIFIER_DEMAND"/>
+<xsd:enumeration value="GROUP_DEHUMIDIFIER_OUTPUT"/>
+<xsd:enumeration value="GROUP_HUMIDIFIER_DEMAND"/>
+<xsd:enumeration value="GROUP_HUMIDIFIER_OUTPUT"/>
+<xsd:enumeration value="GROUP_MAX_RACK_INLET_TEMPERATURE"/>
+<xsd:enumeration value="GROUP_MAX_RETURN_TEMPERATURE"/>
+<xsd:enumeration value="GROUP_MIN_RACK_INLET_TEMPERATURE"/>
+<xsd:enumeration value="GROUP_MIN_RETURN_TEMPERATURE"/>
+<xsd:enumeration value="GROUP_REHEAT_DEMAND"/>
+<xsd:enumeration value="GROUP_REHEAT_OUTPUT"/>
+<xsd:enumeration value="GROUP_SYSTEM_COMM_STATUS"/>
+<xsd:enumeration value="GROUP_SYSTEM_ROLE"/>
+<xsd:enumeration value="GROUP_SYSTEM_RUNHOURS"/>
+<xsd:enumeration value="GROUP_SYSTEM_STATUS"/>
+<xsd:enumeration value="GROUP_VOLUME_AIRFLOW"/>
+<xsd:enumeration value="HEATER_RUNHOURS"/>
+<xsd:enumeration value="HIGH_REMOTE_TEMPERATURE"/>
+<xsd:enumeration value="HOT_GAS_BYPASS_VALVE_POSITION"/>
+<xsd:enumeration value="HOT_GAS_HEATING_STATE"/>
+<xsd:enumeration value="HUMIDIFIER_CONDUCTIVITY"/>
+<xsd:enumeration value="HUMIDIFIER_CURRENT"/>
+<xsd:enumeration value="HUMIDIFIER_DEMAND"/>
+<xsd:enumeration value="HUMIDIFIER_ENABLED"/>
+<xsd:enumeration value="HUMIDIFIER_OUTPUT"/>
+<xsd:enumeration value="HUMIDIFIER_RUNHOURS"/>
+<xsd:enumeration value="HUMIDIFIER_STATE"/>
+<xsd:enumeration value="INPUT_ALARM_STATUS"/>
+<xsd:enumeration value="INPUT_CURRENT"/>
+<xsd:enumeration value="INPUT_FLUID_TEMPERATURE"/>
+<xsd:enumeration value="INPUT_FREQUENCY"/>
+<xsd:enumeration value="INPUT_PHASE_ORIENTATION"/>
+<xsd:enumeration value="INPUT_TYPE"/>
+<xsd:enumeration value="INPUT_VOLTAGE"/>
+<xsd:enumeration value="INPUT_VOLTAGE_LL"/>
+<xsd:enumeration value="INPUT_VOLTAGE_LN"/>
+<xsd:enumeration value="INPUT_VOLTAGE_LN_STATUS"/>
+<xsd:enumeration value="INTEGRATED_CONTACT"/>
+<xsd:enumeration value="INTEGRATED_HUMIDITY"/>
+<xsd:enumeration value="INTEGRATED_TEMPERATURE"/>
+<xsd:enumeration value="INVERTER_OFF_STATE"/>
+<xsd:enumeration value="LEAK_ROPE"/>
+<xsd:enumeration value="LEFT_POWER_SUPPLY_RUNHOURS"/>
+<xsd:enumeration value="LINK_STATUS"/>
+<xsd:enumeration value="LOWER_INLET_TEMPERATURE"/>
+<xsd:enumeration value="LOWER_POWER_SUPPLY_RUNHOURS"/>
+<xsd:enumeration value="LOW_REMOTE_TEMPERATURE"/>
+<xsd:enumeration value="MAIN_INPUT_BREAKER"/>
+<xsd:enumeration value="MAINTENANCE_STATE"/>
+<xsd:enumeration value="MAX_INPUT_VOLTAGE"/>
+<xsd:enumeration value="MIC_PLUG"/>
+<xsd:enumeration value="MIDDLE_INLET_TEMPERATURE"/>
+<xsd:enumeration value="MIN_INPUT_VOLTAGE"/>
+<xsd:enumeration value="MODULE_ALARM_STATUS"/>
+<xsd:enumeration value="MODULE_BREAKER_CURRENT"/>
+<xsd:enumeration value="MODULE_BREAKER_POWER"/>
+<xsd:enumeration value="MODULE_BREAKER_POWER_PCT"/>
+<xsd:enumeration value="MODULE_BREAKER_STATE"/>
+<xsd:enumeration value="MODULE_OUTPUT_POWER"/>
+<xsd:enumeration value="MODULE_OUTPUT_POWER_USAGE"/>
+<xsd:enumeration value="MODULE_OUTPUT_STATUS"/>
+<xsd:enumeration value="NEUTRAL_CURRENT"/>
+<xsd:enumeration value="OHE_INPUT_STATE"/>
+<xsd:enumeration value="OHE_OUTPUT_STATE"/>
+<xsd:enumeration value="OIL_LEVEL"/>
+<xsd:enumeration value="ON_BATTERY_STATE"/>
+<xsd:enumeration value="ON_BYPASS_STATE"/>
+<xsd:enumeration value="OPERATING_MODE"/>
+<xsd:enumeration value="OUTLET_CURRENT"/>
+<xsd:enumeration value="OUTLET_NORMAL"/>
+<xsd:enumeration value="OUTLET_STATE"/>
+<xsd:enumeration value="OUTPUT_CURRENT"/>
+<xsd:enumeration value="OUTPUT_CURRENT_NEUTRAL"/>
+<xsd:enumeration value="OUTPUT_CURRENT_TOTAL"/>
+<xsd:enumeration value="OUTPUT_FLUID_TEMPERATURE"/>
+<xsd:enumeration value="OUTPUT_FREQUENCY"/>
+<xsd:enumeration value="OUTPUT_LOAD_VA"/>
+<xsd:enumeration value="OUTPUT_LOAD_WATTS"/>
+<xsd:enumeration value="OUTPUT_OVERLOAD_STATE"/>
+<xsd:enumeration value="OUTPUT_PHASE_ORIENTATION"/>
+<xsd:enumeration value="OUTPUT_POWER_FACTOR"/>
+<xsd:enumeration value="OUTPUT_POWER_FACTOR_TOTAL"/>
+<xsd:enumeration value="OUTPUT_POWER_TOTAL_VA"/>
+<xsd:enumeration value="OUTPUT_POWER_TOTAL_WATTS"/>
+<xsd:enumeration value="OUTPUT_POWER_VA"/>
+<xsd:enumeration value="OUTPUT_POWER_WATTS"/>
+<xsd:enumeration value="OUTPUT_RELAY"/>
+<xsd:enumeration value="OUTPUT_RELAY_NORMAL"/>
+<xsd:enumeration value="OUTPUT_VOLTAGE"/>
+<xsd:enumeration value="OUTPUT_VOLTAGE_LL"/>
+<xsd:enumeration value="OUTPUT_VOLTAGE_LN"/>
+<xsd:enumeration value="OUTPUT_VOLTAGE_NEUTRAL"/>
+<xsd:enumeration value="OUTPUT_VOLTAGE_STATE"/>
+<xsd:enumeration value="OVER_CURRENT_STATE"/>
+<xsd:enumeration value="OVER_TEMPERATURE_STATE"/>
+<xsd:enumeration value="PHASE_SEQUENCE"/>
+<xsd:enumeration value="PHASE_SYNC_STATE"/>
+<xsd:enumeration value="POWER_FACTOR_SIGNED"/>
+<xsd:enumeration value="POWER_FACTOR_TOTAL"/>
+<xsd:enumeration value="POWER_FACTOR_TOTAL_SIGNED"/>
+<xsd:enumeration value="POWER_KVA"/>
+<xsd:enumeration value="POWER_KVAR"/>
+<xsd:enumeration value="POWER_KW"/>
+<xsd:enumeration value="POWER_SOURCE"/>
+<xsd:enumeration value="POWER_SUPPLY_STATE"/>
+<xsd:enumeration value="POWER_TOTAL_KVA"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_KVA"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_PEAK_KVA"/>
+<xsd:enumeration value="POWER_TOTAL_KVAR"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_KVAR"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_PEAK_KVAR"/>
+<xsd:enumeration value="POWER_TOTAL_KW"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_KW"/>
+<xsd:enumeration value="POWER_TOTAL_DEMAND_PEAK_KW"/>
+<xsd:enumeration value="PRIMARY_POWER_STATUS"/>
+<xsd:enumeration value="Q1_INPUT_BREAKER"/>
+<xsd:enumeration value="Q2_OUTPUT_BREAKER"/>
+<xsd:enumeration value="Q3_BYPASS_BREAKER"/>
+<xsd:enumeration value="RACK_INLET_TEMPERATURE"/>
+<xsd:enumeration value="REAR_DOOR_ALARM_STATUS"/>
+<xsd:enumeration value="REAR_DOOR_ALLOWANCE"/>
+<xsd:enumeration value="REAR_DOOR_HANDLE_STATUS"/>
+<xsd:enumeration value="REAR_DOOR_LOCK_STATUS"/>
+<xsd:enumeration value="REAR_DOOR_STATUS"/>
+<xsd:enumeration value="REDUNDANCY_STATE"/>
+<xsd:enumeration value="REHEAT_DEMAND"/>
+<xsd:enumeration value="REHEAT_OUTPUT"/>
+<xsd:enumeration value="REHEAT_STATE"/>
+<xsd:enumeration value="REMOTE_HUMIDITY"/>
+<xsd:enumeration value="REMOTE_START_STATUS"/>
+<xsd:enumeration value="REMOTE_TEMPERATURE"/>
+<xsd:enumeration value="RETURN_AIR_HUMIDITY"/>
+<xsd:enumeration value="RETURN_AIR_TEMPERATURE"/>
+<xsd:enumeration value="RIGHT_POWER_SUPPLY_RUNHOURS"/>
+<xsd:enumeration value="RUN_TIME_CAL_RESULT"/>
+<xsd:enumeration value="RUN_TIME_REMAINING"/>
+<xsd:enumeration value="SELF_TEST_RESULT"/>
+<xsd:enumeration value="SENSOR_ALARM_STATUS"/>
+<xsd:enumeration value="SENSOR_COMM_STATUS"/>
+<xsd:enumeration value="SENSOR_STATE"/>
+<xsd:enumeration value="SOURCE_QUALITY"/>
+<xsd:enumeration value="SOURCE_STATE"/>
+<xsd:enumeration value="SPEAKER_PLUG"/>
+<xsd:enumeration value="SUBFEED_ALARM_STATUS"/>
+<xsd:enumeration value="SUBFEED_BREAKER_STATE"/>
+<xsd:enumeration value="SUBFEED_CURRENT"/>
+<xsd:enumeration value="SUBFEED_POWER"/>
+<xsd:enumeration value="SUBFEED_POWER_PCT"/>
+<xsd:enumeration value="SUBFEED_POWER_TOTAL"/>
+<xsd:enumeration value="SUBFEED_POWER_USAGE_TOTAL"/>
+<xsd:enumeration value="SUCTION_PRESSURE"/>
+<xsd:enumeration value="SUCTION_TEMPERATURE"/>
+<xsd:enumeration value="SUPERHEAT_TEMPERATURE"/>
+<xsd:enumeration value="SUPPLEMENTAL"/>
+<xsd:enumeration value="SUPPLEMENTAL_DEVICE_STATUS"/>
+<xsd:enumeration value="SUPPLY_AIR_HUMIDITY"/>
+<xsd:enumeration value="SUPPLY_AIR_TEMPERATURE"/>
+<xsd:enumeration value="SWITCH"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_CURRENT"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_CURRENT_PCT"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_FREQUENCY"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_POWER"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_POWER_TOTAL"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_POWER_USAGE"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_POWER_USAGE_TOTAL"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_VOLTAGE_LL"/>
+<xsd:enumeration value="SYSTEM_OUTPUT_VOLTAGE_LN"/>
+<xsd:enumeration value="TEMPERATURE_OVERRIDE_STATUS"/>
+<xsd:enumeration value="TIME_ON_BATTERY"/>
+<xsd:enumeration value="TRANSFORMER_TEMPERATURE_STATUS"/>
+<xsd:enumeration value="TV_SIGNAL"/>
+<xsd:enumeration value="UPPER_INLET_TEMPERATURE"/>
+<xsd:enumeration value="UPPER_POWER_SUPPLY_RUNHOURS"/>
+<xsd:enumeration value="UPS_AGE"/>
+<xsd:enumeration value="UNIT_HUMIDITY"/>
+<xsd:enumeration value="UNIT_ROLE"/>
+<xsd:enumeration value="UNIT_RUNHOURS"/>
+<xsd:enumeration value="UNIT_STATE"/>
+<xsd:enumeration value="UNIT_TEMPERATURE"/>
+<xsd:enumeration value="UNKNOWN"/>
+<xsd:enumeration value="UTILITY_FAILURE_CAUSE"/>
+<xsd:enumeration value="UTILITY_FAILURE_STATE"/>
+<xsd:enumeration value="UTILITY_OFF_STATE"/>
+<xsd:enumeration value="VOLTAGE_GN"/>
+<xsd:enumeration value="VOLTAGE_LL"/>
+<xsd:enumeration value="VOLTAGE_LL_THD"/>
+<xsd:enumeration value="VOLTAGE_LN"/>
+<xsd:enumeration value="VOLTAGE_LN_THD"/>
+<xsd:enumeration value="VOLTAGE_THD"/>
+<xsd:enumeration value="VOLTMETER"/>
+<xsd:enumeration value="VOLUME_AIRFLOW"/>
+<xsd:enumeration value="WC_FILTER_DIFF_PRESSURE"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ISXCDevice">
+<xsd:sequence>
+<xsd:element name="ISXCNamedElement" nillable="true" type="ns2:ISXCNamedElement"/>
+<xsd:element name="ISXCCommState" nillable="true" type="ns2:ISXCCommState"/>
+<xsd:element name="ISXCDeviceType" nillable="true" type="ns2:ISXCDeviceType"/>
+<xsd:element minOccurs="0" name="hostName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="ipAddress" nillable="true" type="xsd:string"/>
+<xsd:element name="location" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modelName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modelNumber" nillable="true" type="xsd:string"/>
+<xsd:element name="parentID" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+<xsd:element name="ISXCDeviceState" nillable="true" type="ns2:ISXCDeviceState"/>
+<xsd:element minOccurs="0" name="supplemental" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+<xsd:attribute name="isPrivate" type="xsd:boolean"/>
+</xsd:complexType>
+<xsd:simpleType name="ISXCCommState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="ONLINE"/>
+<xsd:enumeration value="OFFLINE"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCDeviceState">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="INITIALIZING"/>
+<xsd:enumeration value="NONE"/>
+<xsd:enumeration value="OK"/>
+<xsd:enumeration value="INFORMATIONAL"/>
+<xsd:enumeration value="WARNING"/>
+<xsd:enumeration value="ERROR"/>
+<xsd:enumeration value="CRITICAL"/>
+<xsd:enumeration value="FAILURE"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ISXCDeviceType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="AC"/>
+<xsd:enumeration value="BATTERY_MANAGER"/>
+<xsd:enumeration value="BRANCH_CIRCUIT_MONITOR"/>
+<xsd:enumeration value="CAMERA_POD"/>
+<xsd:enumeration value="CCTV_POD"/>
+<xsd:enumeration value="CHILLER"/>
+<xsd:enumeration value="CONSOLE_PORT_SERVER"/>
+<xsd:enumeration value="DC_RECTIFIER"/>
+<xsd:enumeration value="ENVIRONMENT"/>
+<xsd:enumeration value="GENERATOR"/>
+<xsd:enumeration value="INFRASTRUXURE"/>
+<xsd:enumeration value="KVM_SWITCH"/>
+<xsd:enumeration value="NETBOTZ_WALL"/>
+<xsd:enumeration value="NETBOTZ_RACK"/>
+<xsd:enumeration value="NETBOTZ_ENCLOSURE"/>
+<xsd:enumeration value="NETWORK_DEVICE"/>
+<xsd:enumeration value="POWER_DISTRIBUTION"/>
+<xsd:enumeration value="POWER_METER"/>
+<xsd:enumeration value="RACK_ACCESS_DEVICE"/>
+<xsd:enumeration value="RACK_MANAGER"/>
+<xsd:enumeration value="RACK_POWER_DISTRIBUTION"/>
+<xsd:enumeration value="SENSOR_POD"/>
+<xsd:enumeration value="SERVER"/>
+<xsd:enumeration value="SHARED_DEVICE"/>
+<xsd:enumeration value="SNMP_DEVICE"/>
+<xsd:enumeration value="STATIC_TRANSFER_SWITCH"/>
+<xsd:enumeration value="TRANSFER_SWITCH"/>
+<xsd:enumeration value="UPS"/>
+<xsd:enumeration value="UNKNOWN"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ArrayOfISXCSensorData">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ISXCSensorData" nillable="true" type="ns2:ISXCSensorData"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAverageSensorDataResponse">
+    <wsdl:part name="getAverageSensorDataResponse" element="ns1:getAverageSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsByIDsResponse">
+    <wsdl:part name="getSensorsByIDsResponse" element="ns1:getSensorsByIDsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="initializeSensorServiceResponse">
+    <wsdl:part name="initializeSensorServiceResponse" element="ns1:initializeSensorServiceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultipleSensorDataRequest">
+    <wsdl:part name="getMultipleSensorDataRequest" element="ns1:getMultipleSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorDataRequest">
+    <wsdl:part name="getSensorDataRequest" element="ns1:getSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultiplePeakSensorDataRequest">
+    <wsdl:part name="getMultiplePeakSensorDataRequest" element="ns1:getMultiplePeakSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHistoricalSensorDataResponse">
+    <wsdl:part name="getHistoricalSensorDataResponse" element="ns1:getHistoricalSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsForDeviceRequest">
+    <wsdl:part name="getSensorsForDeviceRequest" element="ns1:getSensorsForDeviceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultipleAverageSensorDataResponse">
+    <wsdl:part name="getMultipleAverageSensorDataResponse" element="ns1:getMultipleAverageSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsByTypeResponse">
+    <wsdl:part name="getSensorsByTypeResponse" element="ns1:getSensorsByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorByIDRequest">
+    <wsdl:part name="getSensorByIDRequest" element="ns1:getSensorByIDRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceForSensorRequest">
+    <wsdl:part name="getDeviceForSensorRequest" element="ns1:getDeviceForSensorRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorDataRangeResponse">
+    <wsdl:part name="getSensorDataRangeResponse" element="ns1:getSensorDataRangeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorEnumerationsResponse">
+    <wsdl:part name="getSensorEnumerationsResponse" element="ns1:getSensorEnumerationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAverageSensorDataRequest">
+    <wsdl:part name="getAverageSensorDataRequest" element="ns1:getAverageSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorDataResponse">
+    <wsdl:part name="getSensorDataResponse" element="ns1:getSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorEnumerationsRequest">
+    <wsdl:part name="getSensorEnumerationsRequest" element="ns1:getSensorEnumerationsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultiplePeakSensorDataResponse">
+    <wsdl:part name="getMultiplePeakSensorDataResponse" element="ns1:getMultiplePeakSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHistoricalSensorDataRequest">
+    <wsdl:part name="getHistoricalSensorDataRequest" element="ns1:getHistoricalSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsByIDsRequest">
+    <wsdl:part name="getSensorsByIDsRequest" element="ns1:getSensorsByIDsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultipleAverageSensorDataRequest">
+    <wsdl:part name="getMultipleAverageSensorDataRequest" element="ns1:getMultipleAverageSensorDataRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeviceForSensorResponse">
+    <wsdl:part name="getDeviceForSensorResponse" element="ns1:getDeviceForSensorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorByIDResponse">
+    <wsdl:part name="getSensorByIDResponse" element="ns1:getSensorByIDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="initializeSensorServiceRequest">
+    <wsdl:part name="initializeSensorServiceRequest" element="ns1:initializeSensorServiceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsByTypeRequest">
+    <wsdl:part name="getSensorsByTypeRequest" element="ns1:getSensorsByTypeRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMultipleSensorDataResponse">
+    <wsdl:part name="getMultipleSensorDataResponse" element="ns1:getMultipleSensorDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorDataRangeRequest">
+    <wsdl:part name="getSensorDataRangeRequest" element="ns1:getSensorDataRangeRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSensorsForDeviceResponse">
+    <wsdl:part name="getSensorsForDeviceResponse" element="ns1:getSensorsForDeviceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SensorServiceFault">
+    <wsdl:part name="SensorServiceFault" element="ns1:SensorServiceFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISXCentralSensorService_v2_0">
+    <wsdl:operation name="getMultipleAverageSensorData">
+      <wsdl:input name="getMultipleAverageSensorDataRequest" message="tns:getMultipleAverageSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getMultipleAverageSensorDataResponse" message="tns:getMultipleAverageSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMultipleSensorData">
+      <wsdl:input name="getMultipleSensorDataRequest" message="tns:getMultipleSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getMultipleSensorDataResponse" message="tns:getMultipleSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsByIDs">
+      <wsdl:input name="getSensorsByIDsRequest" message="tns:getSensorsByIDsRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorsByIDsResponse" message="tns:getSensorsByIDsResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsByType">
+      <wsdl:input name="getSensorsByTypeRequest" message="tns:getSensorsByTypeRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorsByTypeResponse" message="tns:getSensorsByTypeResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAverageSensorData">
+      <wsdl:input name="getAverageSensorDataRequest" message="tns:getAverageSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getAverageSensorDataResponse" message="tns:getAverageSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeviceForSensor">
+      <wsdl:input name="getDeviceForSensorRequest" message="tns:getDeviceForSensorRequest">
+    </wsdl:input>
+      <wsdl:output name="getDeviceForSensorResponse" message="tns:getDeviceForSensorResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMultiplePeakSensorData">
+      <wsdl:input name="getMultiplePeakSensorDataRequest" message="tns:getMultiplePeakSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getMultiplePeakSensorDataResponse" message="tns:getMultiplePeakSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorData">
+      <wsdl:input name="getSensorDataRequest" message="tns:getSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorDataResponse" message="tns:getSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorEnumerations">
+      <wsdl:input name="getSensorEnumerationsRequest" message="tns:getSensorEnumerationsRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorEnumerationsResponse" message="tns:getSensorEnumerationsResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorDataRange">
+      <wsdl:input name="getSensorDataRangeRequest" message="tns:getSensorDataRangeRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorDataRangeResponse" message="tns:getSensorDataRangeResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initializeSensorService">
+      <wsdl:input name="initializeSensorServiceRequest" message="tns:initializeSensorServiceRequest">
+    </wsdl:input>
+      <wsdl:output name="initializeSensorServiceResponse" message="tns:initializeSensorServiceResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getHistoricalSensorData">
+      <wsdl:input name="getHistoricalSensorDataRequest" message="tns:getHistoricalSensorDataRequest">
+    </wsdl:input>
+      <wsdl:output name="getHistoricalSensorDataResponse" message="tns:getHistoricalSensorDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorByID">
+      <wsdl:input name="getSensorByIDRequest" message="tns:getSensorByIDRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorByIDResponse" message="tns:getSensorByIDResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsForDevice">
+      <wsdl:input name="getSensorsForDeviceRequest" message="tns:getSensorsForDeviceRequest">
+    </wsdl:input>
+      <wsdl:output name="getSensorsForDeviceResponse" message="tns:getSensorsForDeviceResponse">
+    </wsdl:output>
+      <wsdl:fault name="SensorServiceFault" message="tns:SensorServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISXCentralSensorService_v2_0HttpBinding" type="tns:ISXCentralSensorService_v2_0">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMultipleAverageSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getMultipleAverageSensorData"/>
+      <wsdl:input name="getMultipleAverageSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMultipleAverageSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMultipleSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getMultipleSensorData"/>
+      <wsdl:input name="getMultipleSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMultipleSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsByIDs">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorsByIDs"/>
+      <wsdl:input name="getSensorsByIDsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorsByIDsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsByType">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorsByType"/>
+      <wsdl:input name="getSensorsByTypeRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorsByTypeResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAverageSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getAverageSensorData"/>
+      <wsdl:input name="getAverageSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAverageSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeviceForSensor">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getDeviceForSensor"/>
+      <wsdl:input name="getDeviceForSensorRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDeviceForSensorResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMultiplePeakSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getMultiplePeakSensorData"/>
+      <wsdl:input name="getMultiplePeakSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMultiplePeakSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorData"/>
+      <wsdl:input name="getSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorEnumerations">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorEnumerations"/>
+      <wsdl:input name="getSensorEnumerationsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorEnumerationsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorDataRange">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorDataRange"/>
+      <wsdl:input name="getSensorDataRangeRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorDataRangeResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initializeSensorService">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/initializeSensorService"/>
+      <wsdl:input name="initializeSensorServiceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="initializeSensorServiceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getHistoricalSensorData">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getHistoricalSensorData"/>
+      <wsdl:input name="getHistoricalSensorDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHistoricalSensorDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorByID">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorByID"/>
+      <wsdl:input name="getSensorByIDRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorByIDResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSensorsForDevice">
+      <wsdlsoap:operation soapAction="http://www.apc.com/stdws/wsdl/ISXCentralSensors-v2/getSensorsForDevice"/>
+      <wsdl:input name="getSensorsForDeviceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSensorsForDeviceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SensorServiceFault">
+        <wsdlsoap:fault name="SensorServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISXCentralSensorService_v2_0">
+    <wsdl:port name="ISXCentralSensorService_v2_0HttpPort" binding="tns:ISXCentralSensorService_v2_0HttpBinding">
+      <wsdlsoap:address location="http://SERVER_REPLACE_ME/integration/services/ISXCentralSensorService_v2_0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -32,7 +32,15 @@ log = logging.getLogger(__name__)
 # ── DCE SOAP API constants ─────────────────────────────────────────────────────
 
 _DEVICE_SERVICE_PATH = "integration/services/ISXCentralDeviceService_v2_0"
+
+# Namespace for request elements (getAllDevicesRequest, etc.)
 _DEVICE_NS = "http://www.apc.com/stdws/xsd/ISXCentralDevices-v2"
+
+# Namespace for response data types: ISXCDevice, ISXCNamedElement, ISXCElement, etc.
+_COMMON_NS = "http://www.apc.com/stdws/xsd/ISXCentral/2009/10"
+
+# SOAPAction required by SOAP 1.1 document/literal binding (from WSDL binding section)
+_SOAP_ACTION = "http://www.apc.com/stdws/wsdl/ISXCentralDevices-v2/getAllDevices"
 
 _NS_DECL = (
     'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
@@ -51,6 +59,7 @@ class DceDevice:
     device_type: Optional[str]   # ISXCDeviceType from DCE
     comm_state: Optional[str]    # "ONLINE", "OFFLINE", etc.
     device_id: Optional[str]     # DCE-internal ISXCElementID
+    name: Optional[str]          # human label in DCE (ISXCNamedElement/name)
 
 
 # ── Internal helpers ───────────────────────────────────────────────────────────
@@ -92,6 +101,7 @@ def _post(url: str, body: bytes, auth: str, verify: bool) -> ET.Element:
         headers={
             "Content-Type": "text/xml; charset=utf-8",
             "Authorization": auth,
+            "SOAPAction": _SOAP_ACTION,
         },
         method="POST",
     )
@@ -99,14 +109,17 @@ def _post(url: str, body: bytes, auth: str, verify: bool) -> ET.Element:
         return ET.fromstring(resp.read())
 
 
-def _child(element: ET.Element, *tags: str) -> Optional[str]:
-    """Return text of the first matching direct child tag (with or without namespace)."""
-    for tag in tags:
-        for candidate in (f"{{{_DEVICE_NS}}}{tag}", tag):
-            found = element.find(candidate)
-            if found is not None and found.text:
-                return found.text.strip() or None
-    return None
+def _text(element: ET.Element, *path: str) -> Optional[str]:
+    """
+    Walk a path of tag names (in _COMMON_NS) from element, return stripped text
+    of the final node, or None if any step is missing or the text is empty.
+    """
+    cur = element
+    for tag in path:
+        cur = cur.find(f"{{{_COMMON_NS}}}{tag}")
+        if cur is None:
+            return None
+    return (cur.text or "").strip() or None
 
 
 # ── SOAP call ──────────────────────────────────────────────────────────────────
@@ -134,26 +147,28 @@ def _fetch_sync(host: str, username: str, password: str, verify_tls: bool) -> li
     except Exception as exc:
         raise RuntimeError(f"Failed to reach Data Center Expert at {host}: {exc}") from exc
 
-    ns = {"isx": _DEVICE_NS}
-    # Response devices are returned as repeated ISXCDevice elements
-    device_els = (
-        resp.findall(".//isx:ISXCDevice", ns)
-        or resp.findall(".//ISXCDevice")
-    )
+    # ISXCDevice elements are in _COMMON_NS (data types namespace, not request namespace)
+    device_els = resp.findall(f".//{{{_COMMON_NS}}}ISXCDevice")
 
     devices: list[DceDevice] = []
     for el in device_els:
-        ip = _child(el, "ipAddress")
+        ip = _text(el, "ipAddress")
         if not ip:
             continue
+
+        # name and id are nested: ISXCNamedElement/name and ISXCNamedElement/ISXCElement/id
+        name = _text(el, "ISXCNamedElement", "name")
+        device_id = _text(el, "ISXCNamedElement", "ISXCElement", "id")
+
         devices.append(DceDevice(
             ip=ip,
-            hostname=_child(el, "hostName", "name"),
-            location=_child(el, "location"),
-            model_name=_child(el, "modelName"),
-            device_type=_child(el, "ISXCDeviceType"),
-            comm_state=_child(el, "ISXCCommState"),
-            device_id=_child(el, "id"),
+            hostname=_text(el, "hostName"),
+            location=_text(el, "location"),
+            model_name=_text(el, "modelName"),
+            device_type=_text(el, "ISXCDeviceType"),
+            comm_state=_text(el, "ISXCCommState"),
+            device_id=device_id,
+            name=name,
         ))
 
     log.info("Data Center Expert %s: %d device(s) returned", host, len(devices))

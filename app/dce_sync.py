@@ -102,6 +102,8 @@ async def sync_server(
 
         if existing is None:
             labels: dict[str, str] = {}
+            if dev.name:
+                labels["dce_name"] = dev.name
             if dev.location:
                 labels["location"] = dev.location
             if dev.model_name:
