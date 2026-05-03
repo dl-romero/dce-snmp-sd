@@ -313,6 +313,114 @@ Devices without a resolved module are excluded from `/targets` until discovery c
 
 ---
 
+## Data Center Expert (DCE) integration
+
+snmp-http-sd can automatically populate its device inventory by pulling from one or more Schneider Electric Data Center Expert servers. Engineers add DCE server credentials once; the service syncs the full device list every hour.
+
+### How it works
+
+1. You add a DCE server via `POST /api/dce`
+2. An initial sync runs immediately in the background
+3. Every hour the service connects to DCE over its SOAP API, fetches all monitored device IPs, and reconciles the inventory:
+   - **New in DCE** → added to the inventory, SNMP probe triggered for module resolution
+   - **Removed from DCE** → removed from the inventory (only DCE-sourced devices; manual entries are untouched)
+   - **Already known** → hostname/location labels updated from DCE if changed
+4. Devices appear in `/targets` once their module has been resolved (same as manually added devices)
+
+> DCE-sourced devices are tracked with `source: "dce:<server-id>"`. Manually added devices (`source: "manual"`) are never modified or removed by the DCE sync.
+
+### Add a DCE server
+
+```bash
+curl -X POST http://localhost:8000/api/dce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "host": "10.0.0.5",
+    "username": "admin",
+    "password": "secret",
+    "label": "DC1 DCE",
+    "default_community": "public",
+    "default_auth": "public_v2",
+    "tls_verify": false
+  }'
+```
+
+Response `201 Created` — an initial sync starts immediately in the background.
+
+**Fields:**
+
+| Field | Default | Description |
+|---|---|---|
+| `host` | required | DCE server IP or hostname |
+| `username` | required | DCE API username |
+| `password` | required | DCE API password |
+| `label` | `null` | Friendly name for logs and the `dce_server` label on targets |
+| `default_community` | `public` | SNMP community applied to all devices imported from this server |
+| `default_auth` | `public_v2` | snmp_exporter auth profile for imported devices |
+| `tls_verify` | `false` | Verify the DCE TLS certificate (DCE commonly uses self-signed certs) |
+
+### Manage DCE servers
+
+```bash
+# List all configured servers (passwords are never returned)
+curl http://localhost:8000/api/dce
+
+# Get a specific server
+curl http://localhost:8000/api/dce/<id>
+
+# Update server config (changes take effect on next sync)
+curl -X PATCH http://localhost:8000/api/dce/<id> \
+  -H "Content-Type: application/json" \
+  -d '{"default_community": "newsecret", "enabled": true}'
+
+# Disable a server without removing it
+curl -X PATCH http://localhost:8000/api/dce/<id> \
+  -H "Content-Type: application/json" \
+  -d '{"enabled": false}'
+
+# Remove a server and all devices imported from it
+curl -X DELETE http://localhost:8000/api/dce/<id>
+```
+
+### Force sync
+
+```bash
+# Sync a specific DCE server now
+curl -X POST http://localhost:8000/api/dce/<id>/sync
+
+# Sync all enabled DCE servers now
+curl -X POST http://localhost:8000/api/dce/sync
+```
+
+### DCE server status in /health
+
+```json
+{
+  "status": "ok",
+  "devices": {"total": 48, "ready": 47, "pending_discovery": 1},
+  "dce_servers": {"total": 2, "enabled": 2},
+  "config": {
+    "refresh_interval_hours": 6.0,
+    "dce_sync_interval_hours": 1.0,
+    "snmp_timeout": 3,
+    "module_lookup": "/data/module_lookup.json"
+  }
+}
+```
+
+The `last_synced`, `last_error`, and `device_count` fields on each DCE server record show the result of the most recent sync.
+
+### Configuration
+
+| Variable | Default | Description |
+|---|---|---|
+| `DCE_SYNC_INTERVAL_HOURS` | `1` | How often to sync from all DCE servers |
+| `DCE_SERVERS_FILE` | `<DATA_FILE dir>/dce_servers.json` | Where DCE server configs are persisted |
+
+> **Security note:** DCE credentials (including passwords) are stored in `dce_servers.json`. Secure this file with appropriate filesystem permissions (`chmod 600`). The REST API never returns passwords.
+
+---
+
 ## Docker
 
 ### Quick start
@@ -343,6 +451,7 @@ Set these in `.env` (see `.env.example`):
 | `SNMP_CONFIG_DIR` | `./data` | Host directory mounted into snmp_exporter — defaults to same as `DATA_DIR` |
 | `PORT` | `8000` | Host port for snmp-http-sd |
 | `REFRESH_INTERVAL_HOURS` | `6` | How often to re-probe all devices for hostname changes |
+| `DCE_SYNC_INTERVAL_HOURS` | `1` | How often to sync device inventory from DCE servers |
 | `SNMP_TIMEOUT` | `3` | SNMP timeout per device in seconds |
 | `SNMP_RETRIES` | `1` | SNMP retries per device |
 

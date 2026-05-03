@@ -15,7 +15,9 @@ RUN mkdir -p /data
 # Defaults — all overridable at runtime via environment variables or docker-compose
 ENV MODULE_LOOKUP_PATH=/data/module_lookup.json \
     DATA_FILE=/data/devices.json \
+    DCE_SERVERS_FILE=/data/dce_servers.json \
     REFRESH_INTERVAL_HOURS=6 \
+    DCE_SYNC_INTERVAL_HOURS=1 \
     SNMP_TIMEOUT=3 \
     SNMP_RETRIES=1
 

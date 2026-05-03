@@ -11,7 +11,9 @@ services:
     environment:
       MODULE_LOOKUP_PATH: /data/module_lookup.json
       DATA_FILE: /data/devices.json
+      DCE_SERVERS_FILE: /data/dce_servers.json
       REFRESH_INTERVAL_HOURS: "${REFRESH_INTERVAL_HOURS:-6}"
+      DCE_SYNC_INTERVAL_HOURS: "${DCE_SYNC_INTERVAL_HOURS:-1}"
       SNMP_TIMEOUT: "${SNMP_TIMEOUT:-3}"
       SNMP_RETRIES: "${SNMP_RETRIES:-1}"
     restart: unless-stopped

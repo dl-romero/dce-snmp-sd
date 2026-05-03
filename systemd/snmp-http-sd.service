@@ -15,7 +15,9 @@ Environment=MODULE_LOOKUP_PATH=/opt/ddf-to-snmp-exporter/output/module_lookup.js
 Environment=DATA_FILE=/var/lib/snmp-http-sd/devices.json
 
 # ── Optional (shown with defaults) ───────────────────────────────────────────
+# Environment=DCE_SERVERS_FILE=/var/lib/snmp-http-sd/dce_servers.json
 # Environment=REFRESH_INTERVAL_HOURS=6
+# Environment=DCE_SYNC_INTERVAL_HOURS=1
 # Environment=SNMP_TIMEOUT=3
 # Environment=SNMP_RETRIES=1
 

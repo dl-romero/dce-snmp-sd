@@ -10,6 +10,33 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.1.0] — 2026-05-03
+
+### Added
+
+#### Data Center Expert (DCE) integration
+- `app/dce_client.py` — SOAP client for the Schneider Electric / APC Data Center Expert API (`/dce-api/services/iManageDevice`); uses stdlib `urllib.request` (no extra dependencies); runs blocking SOAP calls in a thread pool to stay async-safe
+- `app/dce_store.py` — JSON-backed async-safe store for DCE server configurations (same atomic write + lock pattern as `DeviceStore`)
+- `app/dce_sync.py` — hourly scheduler that syncs all enabled DCE servers concurrently:
+  - New devices in DCE → added to inventory, SNMP probe triggered for module resolution
+  - Devices removed from DCE → removed from inventory (DCE-sourced entries only; manual entries are never touched)
+  - Existing devices → hostname and location labels updated from DCE if changed
+- DCE CRUD routes under `/api/dce`:
+  - `GET /api/dce` — list all servers (passwords excluded from responses)
+  - `POST /api/dce` — add server; triggers an initial sync immediately
+  - `GET /api/dce/{id}` — get a server
+  - `PATCH /api/dce/{id}` — update host, credentials, community, auth, or enabled flag
+  - `DELETE /api/dce/{id}` — remove server and all devices imported from it
+  - `POST /api/dce/{id}/sync` — force immediate sync from one server
+  - `POST /api/dce/sync` — force immediate sync from all enabled servers
+- `source` field on `DeviceRecord` and `DeviceOut`: `"manual"` for user-added devices, `"dce:<server-id>"` for DCE-imported devices
+- `DCE_SYNC_INTERVAL_HOURS` environment variable (default: `1`)
+- `DCE_SERVERS_FILE` environment variable (default: same directory as `DATA_FILE`)
+- DCE server status (`total`, `enabled`) added to `GET /health` response
+- Full DCE integration section in `README.md`
+
+---
+
 ## [1.0.0] — 2026-05-03
 
 ### Added
@@ -43,5 +70,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 #### Documentation
 - Full `README.md`: how it works, installation (Linux systemd and Docker), configuration, complete REST API reference with request/response examples, Prometheus relabel config, Docker quick-start, troubleshooting guide
 
-[Unreleased]: https://github.com/dl-romero/snmp-http-sd/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/dl-romero/snmp-http-sd/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/dl-romero/snmp-http-sd/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/dl-romero/snmp-http-sd/releases/tag/v1.0.0
