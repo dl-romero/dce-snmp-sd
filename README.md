@@ -313,9 +313,9 @@ Devices without a resolved module are excluded from `/targets` until discovery c
 
 ---
 
-## Data Center Expert (DCE) integration
+## Data Center Expert integration
 
-snmp-http-sd can automatically populate its device inventory by pulling from one or more Schneider Electric Data Center Expert servers. Engineers add DCE server credentials once; the service syncs the full device list every hour.
+snmp-http-sd can automatically populate its device inventory by pulling from one or more Schneider Electric Data Center Expert servers. Engineers add server credentials once; the service syncs the full device list every hour.
 
 ### How it works
 
@@ -327,7 +327,20 @@ snmp-http-sd can automatically populate its device inventory by pulling from one
    - **Already known** → hostname/location labels updated from DCE if changed
 4. Devices appear in `/targets` once their module has been resolved (same as manually added devices)
 
-> DCE-sourced devices are tracked with `source: "dce:<server-id>"`. Manually added devices (`source: "manual"`) are never modified or removed by the DCE sync.
+Devices imported from Data Center Expert are labeled with `source: "dce:<server-id>"`. Manually added devices (`source: "manual"`) are never modified or removed by the sync.
+
+### API details
+
+The integration uses the Data Center Expert SOAP web services API:
+
+| Service | Endpoint path |
+|---|---|
+| Device inventory (used for sync) | `/integration/services/ISXCentralDeviceService_v2_0` |
+| Sensor readings | `/integration/services/ISXCentralSensorService_v2_0` |
+| Alarms | `/integration/services/ISXCentralAlarmsService_v2_0` |
+| Device groups | `/integration/services/ISXCentralDeviceGroupService_v2_0` |
+
+Authentication is **HTTP Basic Auth** sent with every request — no session management required. The `host` field accepts `hostname`, `IP address`, `http://hostname`, or `https://hostname`. If no scheme is given, `https://` is assumed.
 
 ### Add a DCE server
 

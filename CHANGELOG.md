@@ -14,8 +14,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-#### Data Center Expert (DCE) integration
-- `app/dce_client.py` — SOAP client for the Schneider Electric / APC Data Center Expert API (`/dce-api/services/iManageDevice`); uses stdlib `urllib.request` (no extra dependencies); runs blocking SOAP calls in a thread pool to stay async-safe
+#### Data Center Expert integration
+- `app/dce_client.py` — SOAP client for the Schneider Electric Data Center Expert web services API (`/integration/services/ISXCentralDeviceService_v2_0`); uses HTTP Basic Auth (credentials sent per-request, no sessions); stdlib `urllib.request` only (no extra dependencies); runs blocking SOAP calls in a thread pool to stay async-safe
 - `app/dce_store.py` — JSON-backed async-safe store for DCE server configurations (same atomic write + lock pattern as `DeviceStore`)
 - `app/dce_sync.py` — hourly scheduler that syncs all enabled DCE servers concurrently:
   - New devices in DCE → added to inventory, SNMP probe triggered for module resolution

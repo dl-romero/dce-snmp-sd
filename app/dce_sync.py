@@ -68,7 +68,8 @@ async def sync_server(
     if not server or not server.enabled:
         return
 
-    log.info("DCE sync: %s (%s)", server.label or server.host, server.host)
+    label = server.label or server.host
+    log.info("Data Center Expert sync: %s (%s)", label, server.host)
     source_tag = _source_tag(server_id)
 
     try:
@@ -76,7 +77,7 @@ async def sync_server(
             server.host, server.username, server.password, server.tls_verify
         )
     except Exception as exc:
-        log.error("DCE sync: failed to reach %s: %s", server.host, exc)
+        log.error("Data Center Expert sync: failed to reach %s: %s", server.host, exc)
         await dce_store.patch(server_id, {
             "last_error": str(exc),
             "last_synced": datetime.now(timezone.utc),
@@ -88,7 +89,7 @@ async def sync_server(
     # ── Remove stale DCE-sourced devices ──────────────────────────────────────
     for rec in await device_store.all():
         if rec.source == source_tag and rec.ip not in dce_ips:
-            log.info("DCE sync: removing %s (dropped from DCE %s)", rec.ip, server.host)
+            log.info("Data Center Expert sync: removing %s (no longer in %s)", rec.ip, server.host)
             await device_store.remove(rec.ip)
 
     # ── Add new / refresh existing ────────────────────────────────────────────
@@ -103,6 +104,8 @@ async def sync_server(
             labels: dict[str, str] = {}
             if dev.location:
                 labels["location"] = dev.location
+            if dev.model_name:
+                labels["model"] = dev.model_name
             if server.label:
                 labels["dce_server"] = server.label
 
@@ -141,7 +144,7 @@ async def sync_server(
         "device_count": len(dce_ips),
     })
     log.info(
-        "DCE sync: %s done — %d in DCE, %d newly added",
+        "Data Center Expert sync: %s done — %d device(s) in DCE, %d newly added",
         server.host, len(dce_ips), added,
     )
 
@@ -152,12 +155,12 @@ async def sync_all_servers(
     snmp_timeout: int = 3,
     snmp_retries: int = 1,
 ) -> None:
-    """Sync all enabled DCE servers concurrently."""
+    """Sync all enabled Data Center Expert servers concurrently."""
     servers = [s for s in await dce_store.all() if s.enabled]
     if not servers:
-        log.debug("DCE sync: no enabled servers configured")
+        log.debug("Data Center Expert sync: no enabled servers configured")
         return
-    log.info("DCE sync: running against %d server(s)", len(servers))
+    log.info("Data Center Expert sync: running against %d server(s)", len(servers))
     await asyncio.gather(
         *[
             sync_server(dce_store, device_store, s.id, snmp_timeout, snmp_retries)
