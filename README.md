@@ -46,6 +46,9 @@ snmp-http-sd/
 │   └── scheduler.py       # Background refresh loop
 ├── systemd/
 │   └── snmp-http-sd.service
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
 ├── install.sh
 └── requirements.txt
 ```
@@ -226,6 +229,14 @@ curl -X POST http://localhost:8000/api/devices/10.0.0.11/refresh
 # All devices
 curl -X POST http://localhost:8000/api/refresh
 ```
+
+### Reload module lookup
+
+```bash
+curl -X POST http://localhost:8000/api/reload-lookup
+```
+
+Re-reads `module_lookup.json` from disk without restarting the service. Call this after the daily DDF sync regenerates the lookup index so that newly added modules are available immediately. Returns `200 OK` when complete.
 
 ### Health check
 
